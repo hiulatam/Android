@@ -1,14 +1,54 @@
 package com.hiulatam.hiu.hiu;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.animation.Animation;
+
+import java.io.IOException;
+
+import pl.droidsonroids.gif.AnimationListener;
+import pl.droidsonroids.gif.GifDrawable;
+import pl.droidsonroids.gif.GifImageView;
+import pl.droidsonroids.gif.GifTextView;
 
 public class SplashScreen extends AppCompatActivity {
 
+    private Context context;
+    public GifImageView gifView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        context=this;
+         gifView = (GifImageView) findViewById(R.id.gif);
+        try {
+            GifDrawable gifFromResource = new GifDrawable( getResources(), R.drawable.gif_splash );
+            gifView.setImageDrawable(gifFromResource);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        initActivity();
+
+
+
+
+    }
+
+    private void initActivity() {
+
+        GifDrawable gifDrawable=(GifDrawable) gifView.getDrawable();
+           if(gifView.getDrawable()!=null){
+            gifDrawable.addAnimationListener(new AnimationListener() {
+                @Override
+                public void onAnimationCompleted(int loopNumber) {
+                    Intent intent= new Intent(context,LoginActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+        }
+
     }
 }
