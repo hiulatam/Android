@@ -7,11 +7,33 @@
     tools:context="com.hiulatam.hiu.hiu.LoginActivity"
 
     >
+
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:adjustViewBounds="false"
         android:background="@drawable/sign_in_blured"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="1.0" />
+    <ImageView
+        android:id="@+id/imageInfo"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/sign_in_info"
+        android:scaleType="fitCenter"
+        android:layout_marginRight="10dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="10dp" />
 
 
     <android.support.constraint.Guideline
@@ -19,18 +41,22 @@
         android:layout_height="wrap_content"
         android:id="@+id/guideline"
         app:layout_constraintGuide_percent="0.5"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="256dp"
+        tools:layout_editor_absoluteX="0dp" />
 
     <android.support.constraint.Guideline
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/guideline2"
         app:layout_constraintGuide_percent="0.5"
-        android:orientation="vertical" />
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="180dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:scaleType="fitXY"
         android:src="@drawable/sign_in_logo_hiu"
@@ -38,7 +64,10 @@
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:id="@+id/imageView2" />
 
 
     <com.an.customfontview.CustomEditText
@@ -48,8 +77,6 @@
         app:textFontPath="fonts/Nanami-Thin.otf"
         android:layout_height="90dp"
         android:paddingBottom="20dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
         android:hint="test@mail.com"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,14 +85,13 @@
         android:layout_marginRight="90dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        android:background="@drawable/sign_in_bg" />
+        android:background="@drawable/sign_in_bg"
+        android:layout_marginEnd="90dp" />
 
 
     <com.an.customfontview.CustomEditText
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
         android:background="@color/colorPrimary"
         android:hint="Password"
         android:textColor="@color/white"
@@ -77,6 +103,7 @@
         android:inputType="textPassword"
         android:layout_marginLeft="90dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginStart="90dp" />
 
 </android.support.constraint.ConstraintLayout>

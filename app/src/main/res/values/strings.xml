@@ -7,4 +7,14 @@
     <string name="action_settings">Settings</string>
     <string name="lema">Surprise and Change the world</string>
 
+
+
+    <!-- WalkThrough -->
+    <string name="first_title">Select your favorite person</string>
+    <string name="first_sub">sportsman, actor, singer, writer ...</string>
+    <string name="second_title">Fill out the form</string>
+    <string name="second_sub">Everything with the information of the lucky one</string>
+    <string name="third_title">Choose a charity foundation</string>
+    <string name="third_sub">Make a donation, help the artist and get one of the best gifts you ever had</string>
+
 </resources>

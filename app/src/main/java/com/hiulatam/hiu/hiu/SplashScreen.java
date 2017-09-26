@@ -27,6 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         try {
             GifDrawable gifFromResource = new GifDrawable( getResources(), R.drawable.gif_splash );
             gifView.setImageDrawable(gifFromResource);
+            gifFromResource.setSpeed(2.0f);
         } catch (IOException e) {
             e.printStackTrace();
         }
