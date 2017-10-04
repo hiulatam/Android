@@ -1,19 +1,23 @@
 package com.hiulatam.hiu.hiu;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.animation.Animation;
+
+
+
 
 import java.io.IOException;
+
 
 import pl.droidsonroids.gif.AnimationListener;
 import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifImageView;
-import pl.droidsonroids.gif.GifTextView;
 
 public class SplashScreen extends AppCompatActivity {
+    private static final String LOG_TAG = SplashScreen.class.getSimpleName();
 
     private Context context;
     public GifImageView gifView;
@@ -23,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
         context=this;
-         gifView = (GifImageView) findViewById(R.id.gif);
+        gifView = (GifImageView) findViewById(R.id.gif);
         try {
             GifDrawable gifFromResource = new GifDrawable( getResources(), R.drawable.gif_splash );
             gifView.setImageDrawable(gifFromResource);
@@ -47,9 +51,14 @@ public class SplashScreen extends AppCompatActivity {
                 public void onAnimationCompleted(int loopNumber) {
                     Intent intent= new Intent(context,LoginActivity.class);
                     context.startActivity(intent);
+
+
                 }
             });
         }
 
     }
+
+
+
 }
