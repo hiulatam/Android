@@ -36,23 +36,23 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        if(isLoggedIn()){
 
-            facebookSuccess();
-        }
         callbackManager = CallbackManager.Factory.create();
 
         LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.registerCallback(callbackManager,this);
-         profileTracker = new ProfileTracker() {
+        profileTracker = new ProfileTracker() {
             @Override
             protected void onCurrentProfileChanged(
                     Profile oldProfile,
                     Profile currentProfile) {
-               profile=new profileFacebook(currentProfile);
+                profile=new profileFacebook(currentProfile);
                 // App code
             }
+
         };
+        profileTracker.startTracking();
+
 
         info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +61,10 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
                 startActivity(intent);
             }
         });
+        if(isLoggedIn()){
+
+            facebookSuccess();
+        }
     }
 
 
@@ -78,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
         Log.i(TAG, "LoginButton FacebookCallback onSuccess");
         if(loginresult.getAccessToken() != null){
             Log.i(TAG, "Access Token:: "+loginresult.getAccessToken());
+
             facebookSuccess();
         }
        //String UserId= loginresult.getAccessToken().getUserId();
@@ -85,7 +90,8 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
     }
 
     private void facebookSuccess() {
-
+        Profile curreProfile = Profile.getCurrentProfile();
+        profile=new profileFacebook(curreProfile);
         Intent intent= new Intent(LoginActivity.this,MainActivity.class);
         intent.putExtra("profile",profile);
         startActivity(intent);
