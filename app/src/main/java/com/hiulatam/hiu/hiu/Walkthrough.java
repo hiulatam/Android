@@ -13,7 +13,8 @@ import com.hiulatam.hiu.hiu.fragments.SampleSlideFragment;
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_walkthrough);
 
-
+        setColorSkipButton(getResources().getColor(R.color.colorPrimary));
+        setColorDoneText(getResources().getColor(R.color.colorPrimary));
         addSlide(SampleSlideFragment.newInstance(R.layout.slide1));
         addSlide(SampleSlideFragment.newInstance(R.layout.slide2));
         addSlide(SampleSlideFragment.newInstance(R.layout.slide3));
