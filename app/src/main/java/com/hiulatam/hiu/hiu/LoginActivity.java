@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.an.customfontview.CustomButton;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -27,8 +28,6 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
     private CallbackManager callbackManager;
     private ProfileTracker profileTracker;
     private  profileFacebook profile;
-
-    public static final String TAG = "LoginActivity - ";
 
     CustomButton buttonSignIn;
 

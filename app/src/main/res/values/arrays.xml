@@ -3,4 +3,10 @@
     <string-array name="dashboard_title">
         <item>@string/dashboard</item>
     </string-array>
+
+    <string-array name="page_title">
+        <item>@string/name</item>
+        <item>@string/country</item>
+        <item>@string/category</item>
+    </string-array>
 </resources>

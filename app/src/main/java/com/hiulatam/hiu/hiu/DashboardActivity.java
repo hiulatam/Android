@@ -3,6 +3,9 @@ package com.hiulatam.hiu.hiu;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -18,7 +21,12 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hiulatam.hiu.hiu.adapter.CelebrityFragmentPagerAdapter;
 import com.hiulatam.hiu.hiu.common.Config;
+import com.hiulatam.hiu.hiu.fragments.CelebrityFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by: Shiny Solutions
@@ -34,6 +42,10 @@ public class DashboardActivity extends AppCompatActivity {
     LinearLayout linearLayoutTitle;
     ImageButton imageButtonNavigationView;
     SearchView searchViewCelebrity;
+    TabLayout tabLayoutCelebrity;
+    ViewPager viewPagerContent;
+
+    CelebrityFragmentPagerAdapter celebrityFragmentPagerAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -62,6 +74,10 @@ public class DashboardActivity extends AppCompatActivity {
         imageButtonNavigationView = (ImageButton) findViewById(R.id.image_button_navigation_view);
 
         searchViewCelebrity = (SearchView) findViewById(R.id.search_view_celebrity);
+
+        tabLayoutCelebrity = (TabLayout) findViewById(R.id.tab_layout_celebrity);
+
+        viewPagerContent = (ViewPager) findViewById(R.id.view_pager_content);
     }
 
     /**
@@ -72,6 +88,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        setViewPagerAdapter();
+
+        tabLayoutCelebrity.setupWithViewPager(viewPagerContent);
 
 
     }
@@ -84,6 +104,31 @@ public class DashboardActivity extends AppCompatActivity {
         imageButtonNavigationView.setOnClickListener(onClickListener);
         searchViewCelebrity.setOnSearchClickListener(onClickListener);
         searchViewCelebrity.setOnCloseListener(onCloseListener);
+    }
+
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/5/17
+     * @return
+     */
+    private List<Fragment> getFragments(){
+        List<Fragment> fragmentList = new ArrayList<Fragment>();
+
+        fragmentList.add(new CelebrityFragment().newInstance("Name"));
+        fragmentList.add(new CelebrityFragment().newInstance("Country"));
+        fragmentList.add(new CelebrityFragment().newInstance("Category"));
+        return fragmentList;
+    }
+
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/5/17
+     */
+    private void setViewPagerAdapter(){
+        List<Fragment> fragmentList = getFragments();
+        if (celebrityFragmentPagerAdapter == null)
+            celebrityFragmentPagerAdapter = new CelebrityFragmentPagerAdapter(getSupportFragmentManager(), this, fragmentList);
+        viewPagerContent.setAdapter(celebrityFragmentPagerAdapter);
     }
 
     /**
