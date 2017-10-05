@@ -5,12 +5,16 @@ package com.hiulatam.hiu.hiu;
 import android.app.Application;
 import android.content.res.Configuration;
 
+import com.hiulatam.hiu.hiu.utils.profileUser;
+
 
 public class MyApplication  extends Application {
+    public static profileUser profile;
     @Override
     public void onCreate() {
         super.onCreate();
         // Required initialization logic here!
+         profile=new profileUser();
     }
 
     // Called by the system when the device configuration changes while your component is running.

@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.an.customfontview.CustomButton;
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -20,32 +19,32 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.hiulatam.hiu.hiu.utils.profileFacebook;
+import com.hiulatam.hiu.hiu.utils.profileUser;
+import com.steelkiwi.instagramhelper.InstagramHelper;
+import com.steelkiwi.instagramhelper.model.InstagramUser;
+import com.steelkiwi.instagramhelper.utils.SharedPrefUtils;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 public class LoginActivity extends AppCompatActivity implements FacebookCallback {
 
     private static final String TAG ="facebook login:   " ;
-    private LoginButton loginButton;
+    private Button btn_fb_login,btn_ins_login;
     private CallbackManager callbackManager;
     private ProfileTracker profileTracker;
-    private  profileFacebook profile;
     private Context mContext;
-
+    private ImageView info;
+    private InstagramHelper instagramHelper;
     CustomButton buttonSignIn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ImageView info= (ImageView) findViewById(R.id.imageInfo);
-
+        info= (ImageView) findViewById(R.id.imageInfo);
+        //facebook sdk
         FacebookSdk.sdkInitialize(getApplicationContext());
-
-
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager,this);
         profileTracker = new ProfileTracker() {
@@ -53,39 +52,29 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
             protected void onCurrentProfileChanged(
                     Profile oldProfile,
                     Profile currentProfile) {
-                profile=new profileFacebook(currentProfile);
+                //profile=new profileUser();
+                MyApplication.profile.profilefacebok=currentProfile;
                 // App code
             }
 
         };
         profileTracker.startTracking();
-
-
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(LoginActivity.this,Walkthrough.class);
-                startActivity(intent);
-            }
-        });
-        if(profileFacebook.isLoggedIn()){
-
+        if(profileUser.isLoggedInFAacebook(this)){
             facebookSuccess();
+        }else if(profileUser.isLoggedInInstagram(this)){
+            InstagramSuccess();
         }
-        Button btn_fb_login = (Button)findViewById(R.id.btn_fb_login);
 
-        btn_fb_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LoginManager.getInstance().logInWithReadPermissions(
-                                LoginActivity.this, Arrays.asList("public_profile", "user_friends"));
 
-            }
-        });
+
+
 
         bindComponents();
         init();
         addListeners();
+
+
+
     }
 
 
@@ -112,9 +101,19 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
 
     private void facebookSuccess() {
         Profile curreProfile = Profile.getCurrentProfile();
-        profile=new profileFacebook(curreProfile);
+
+        MyApplication.profile.profilefacebok=curreProfile;
         Intent intent= new Intent(LoginActivity.this,DashboardActivity.class);
-        intent.putExtra("profile",profile);
+        intent.putExtra("profile", MyApplication.profile);
+        startActivity(intent);
+    }
+
+    private void InstagramSuccess() {
+        InstagramUser instagramUser = SharedPrefUtils.getInstagramUser(this);
+        String token = SharedPrefUtils.getToken(this);
+        MyApplication.profile.profileInstagram=instagramUser;
+        Intent intent= new Intent(LoginActivity.this,DashboardActivity.class);
+        intent.putExtra("profile", MyApplication.profile);
         startActivity(intent);
     }
 
@@ -152,7 +151,8 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
      */
     private void bindComponents(){
         buttonSignIn = (CustomButton) findViewById(R.id.sign_in);
-
+        btn_fb_login = (Button)findViewById(R.id.btn_fb_login);
+        btn_ins_login = (Button)findViewById(R.id.btn_ins_login);
     }
 
     /**
@@ -169,6 +169,31 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
      */
     private void addListeners(){
         buttonSignIn.setOnClickListener(clickListener);
+        btn_fb_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginManager.getInstance().logInWithReadPermissions(
+                        LoginActivity.this, Arrays.asList("public_profile", "user_friends"));
+
+            }
+        });
+        btn_ins_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent= new Intent(LoginActivity.this,InstagramActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(LoginActivity.this,Walkthrough.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -192,7 +217,6 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
             showDashboard();
         }
     };
-
 
 
 }

@@ -1,6 +1,5 @@
 package com.hiulatam.hiu.hiu;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,20 +13,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.AccessToken;
-import com.facebook.login.LoginManager;
-import com.hiulatam.hiu.hiu.utils.profileFacebook;
+import com.hiulatam.hiu.hiu.utils.profileUser;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private NavigationView navigationView;
-    private profileFacebook pefil;
+    private profileUser pefil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,10 +31,10 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main_navigation);
 
         Bundle extras = getIntent().getExtras();
-        pefil=new profileFacebook();
+        pefil=new profileUser();
 
         if (extras != null) {
-           pefil= (profileFacebook)extras.getParcelable("profile");
+           pefil= (profileUser)extras.getParcelable("profile");
             // and get whatever type user account id is
         }
 
@@ -75,10 +71,10 @@ public class MainActivity extends AppCompatActivity
     private void facebookprofilefill() {
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.username);
-        nav_user.setText(pefil.profile.getName());
+        nav_user.setText(pefil.profilefacebok.getName());
         ImageView img_user = (ImageView) hView.findViewById(R.id.imageView);
         Picasso.with(this)
-                .load(pefil.profile.getProfilePictureUri(80,80))
+                .load(pefil.profilefacebok.getProfilePictureUri(80,80))
                 .placeholder(R.drawable.com_facebook_button_login_logo)
                 .error(android.R.drawable.sym_def_app_icon)
                 .into(img_user);
@@ -139,8 +135,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
 
         }else if(id == R.id.log_out){
-            if(profileFacebook.isLoggedIn()){
-                profileFacebook.callFacebookLogout(this);
+            if(profileUser.isLoggedInFAacebook(this)){
+                profileUser.callFacebookLogout(this);
                 Intent intent= new Intent(this,LoginActivity.class);
                 startActivity(intent);
             }

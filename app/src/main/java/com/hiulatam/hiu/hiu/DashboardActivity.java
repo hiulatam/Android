@@ -1,10 +1,7 @@
 package com.hiulatam.hiu.hiu;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -14,23 +11,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hiulatam.hiu.hiu.adapter.CelebrityFragmentPagerAdapter;
-import com.hiulatam.hiu.hiu.common.Config;
 import com.hiulatam.hiu.hiu.fragments.CelebrityFragment;
 import com.hiulatam.hiu.hiu.utils.circleTransform;
-import com.hiulatam.hiu.hiu.utils.profileFacebook;
+import com.hiulatam.hiu.hiu.utils.profileUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -54,7 +46,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     ViewPager viewPagerContent;
 
     CelebrityFragmentPagerAdapter celebrityFragmentPagerAdapter;
-    private profileFacebook pefil;
+    private profileUser pefil;
     private NavigationView navigationView;
 
     @Override
@@ -63,10 +55,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_main);
 
         Bundle extras = getIntent().getExtras();
-        pefil=new profileFacebook();
+        pefil=new profileUser();
 
         if (extras != null) {
-            pefil= (profileFacebook)extras.getParcelable("profile");
+            pefil= (profileUser)extras.getParcelable("profile");
             // and get whatever type user account id is
         }
 
@@ -74,7 +66,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         bindComponents();
         init();
         addListeners();
-        if(pefil.profile!=null){//loged by facebook
+        if(pefil.profilefacebok!=null){//loged by facebook
             facebookprofilefill();
         }
     }
@@ -186,10 +178,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     private void facebookprofilefill() {
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.username);
-        nav_user.setText(pefil.profile.getName());
+        nav_user.setText(pefil.profilefacebok.getName());
         ImageView img_user = (ImageView) hView.findViewById(R.id.imageView);
         Picasso.with(this)
-                .load(pefil.profile.getProfilePictureUri(280,280))
+                .load(pefil.profilefacebok.getProfilePictureUri(280,280))
                 .placeholder(R.drawable.com_facebook_button_login_logo)
                 .error(android.R.drawable.sym_def_app_icon)
                 .transform(new circleTransform())
@@ -217,8 +209,12 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         } else if (id == R.id.nav_send) {
 
         }else if(id == R.id.log_out){
-            if(profileFacebook.isLoggedIn()){
-                profileFacebook.callFacebookLogout(this);
+            if(profileUser.isLoggedInFAacebook(this)){
+                profileUser.callFacebookLogout(this);
+                Intent intent= new Intent(this,LoginActivity.class);
+                startActivity(intent);
+            }else if(profileUser.isLoggedInInstagram(this)){
+                profileUser.callInstagramLogout(this);
                 Intent intent= new Intent(this,LoginActivity.class);
                 startActivity(intent);
             }

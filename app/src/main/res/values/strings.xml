@@ -21,6 +21,8 @@
 
     <string name="facebook_app_id">1931307483801819</string>
     <string name="fb_login_protocol_scheme">fb1931307483801819</string>
+    <string name="instagram_app_id">07b61414512a45dcb8e86e087431f2a2</string>
+    <string name="instagram_scheme">fb1931307483801819</string>
 
     <!-- REQUIRED FOR GENERAL APP FUNCTIONALITY - YOU MAY WANT TO KEEP THESE -->
 
@@ -126,7 +128,8 @@
     <!-- NoSQL Demo Operations Headers -->
     <string name="nosql_operation_header_get">Get</string>
     <string name="nosql_operation_header_primary_queries">Primary Index Queries</string>
-    <string name="nosql_operation_header_secondary_queries">Secondary Index Queries (%s)</string>string>
+    <string name="nosql_operation_header_secondary_queries">Secondary Index Queries (%s)</string>
+    string>
     <string name="nosql_operation_header_scan">Scan</string>string>
     <!-- NoSQL Demo Get Operations -->
     <string name="nosql_operation_get_by_partition_text">Get Item</string>
@@ -195,6 +198,10 @@
     <string name="name">Name</string>
     <string name="country">Country</string>
     <string name="category">Category</string>
+    <string name="title_activity_insta">InstaActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
