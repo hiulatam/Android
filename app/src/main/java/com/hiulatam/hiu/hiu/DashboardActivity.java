@@ -55,19 +55,15 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         setContentView(R.layout.activity_main);
 
         Bundle extras = getIntent().getExtras();
-        pefil=new profileUser();
-
-        if (extras != null) {
-            pefil= (profileUser)extras.getParcelable("profile");
-            // and get whatever type user account id is
-        }
-
+        pefil=MyApplication.profile;
 
         bindComponents();
         init();
         addListeners();
         if(pefil.profilefacebok!=null){//loged by facebook
             facebookprofilefill();
+        }else if(pefil.profileInstagram!=null){
+            Instagramprofilefill();
         }
     }
 
@@ -190,6 +186,20 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         mail_user.setText("");
     }
 
+    private void Instagramprofilefill() {
+        View hView =  navigationView.getHeaderView(0);
+        TextView nav_user = (TextView)hView.findViewById(R.id.username);
+        nav_user.setText(pefil.profileInstagram.getData().getFullName());
+        ImageView img_user = (ImageView) hView.findViewById(R.id.imageView);
+        Picasso.with(this)
+                .load(pefil.profileInstagram.getData().getProfilePicture())
+                .placeholder(R.drawable.instagram_button)
+                .error(android.R.drawable.sym_def_app_icon)
+                .transform(new circleTransform())
+                .into(img_user);
+        TextView mail_user = (TextView)hView.findViewById(R.id.textView);
+        mail_user.setText("");
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
