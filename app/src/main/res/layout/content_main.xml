@@ -9,8 +9,10 @@
     tools:showIn="@layout/app_bar_main">
 
     <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/view_pager_content"></android.support.v4.view.ViewPager>
+        android:layout_width="344dp"
+        android:layout_height="502dp"
+        android:id="@+id/view_pager_content"
+        tools:layout_editor_absoluteY="8dp"
+        tools:layout_editor_absoluteX="8dp"></android.support.v4.view.ViewPager>
 
 </android.support.constraint.ConstraintLayout>

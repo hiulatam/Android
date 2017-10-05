@@ -1,10 +1,13 @@
 package com.hiulatam.hiu.hiu.utils;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.provider.ContactsContract;
 
+import com.facebook.AccessToken;
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 
 /**
  * Created by ltaleron on 10/3/17.
@@ -46,4 +49,18 @@ public class profileFacebook implements Parcelable {
             return new profileFacebook[size];
         }
     };
+
+
+    public static boolean isLoggedIn() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken != null;
+    }
+
+    /**
+     * Logout From Facebook
+     */
+    public static void callFacebookLogout(Context context) {
+
+        LoginManager.getInstance().logOut();
+    }
 }

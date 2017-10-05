@@ -1,10 +1,12 @@
 package com.hiulatam.hiu.hiu;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -21,6 +23,9 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.hiulatam.hiu.hiu.utils.profileFacebook;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class LoginActivity extends AppCompatActivity implements FacebookCallback {
 
     private static final String TAG ="facebook login:   " ;
@@ -28,6 +33,7 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
     private CallbackManager callbackManager;
     private ProfileTracker profileTracker;
     private  profileFacebook profile;
+    private Context mContext;
 
     CustomButton buttonSignIn;
 
@@ -41,9 +47,7 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
 
 
         callbackManager = CallbackManager.Factory.create();
-
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.registerCallback(callbackManager,this);
+        LoginManager.getInstance().registerCallback(callbackManager,this);
         profileTracker = new ProfileTracker() {
             @Override
             protected void onCurrentProfileChanged(
@@ -64,10 +68,20 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
                 startActivity(intent);
             }
         });
-        if(isLoggedIn()){
+        if(profileFacebook.isLoggedIn()){
 
             facebookSuccess();
         }
+        Button btn_fb_login = (Button)findViewById(R.id.btn_fb_login);
+
+        btn_fb_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginManager.getInstance().logInWithReadPermissions(
+                                LoginActivity.this, Arrays.asList("public_profile", "user_friends"));
+
+            }
+        });
 
         bindComponents();
         init();
@@ -99,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
     private void facebookSuccess() {
         Profile curreProfile = Profile.getCurrentProfile();
         profile=new profileFacebook(curreProfile);
-        Intent intent= new Intent(LoginActivity.this,MainActivity.class);
+        Intent intent= new Intent(LoginActivity.this,DashboardActivity.class);
         intent.putExtra("profile",profile);
         startActivity(intent);
     }
@@ -112,14 +126,14 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
 
     @Override
     public void onError(FacebookException error) {
-        Toast.makeText(this,"error",
+        Toast.makeText(this,error.toString(),
                 Toast.LENGTH_SHORT).show();
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+       callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
@@ -130,10 +144,7 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
 
 
 
-    public boolean isLoggedIn() {
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        return accessToken != null;
-    }
+
 
     /**
      * Created by:  Shiny Solutions
