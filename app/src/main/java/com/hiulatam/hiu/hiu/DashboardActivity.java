@@ -177,7 +177,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         nav_user.setText(pefil.profilefacebok.getName());
         ImageView img_user = (ImageView) hView.findViewById(R.id.imageView);
         Picasso.with(this)
-                .load(pefil.profilefacebok.getProfilePictureUri(280,280))
+                .load(pefil.profilefacebok.getProfilePictureUri(140,140))
                 .placeholder(R.drawable.com_facebook_button_login_logo)
                 .error(android.R.drawable.sym_def_app_icon)
                 .transform(new circleTransform())
