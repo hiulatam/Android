@@ -60,9 +60,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         bindComponents();
         init();
         addListeners();
-        if(pefil.profilefacebok!=null){//loged by facebook
+        if(profileUser.isLoggedInFAacebook(this)){//loged by facebook
             facebookprofilefill();
-        }else if(pefil.profileInstagram!=null){
+        }else if(profileUser.isLoggedInInstagram(this)){
             Instagramprofilefill();
         }
     }
