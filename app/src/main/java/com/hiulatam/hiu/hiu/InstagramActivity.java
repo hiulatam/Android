@@ -26,7 +26,6 @@ public class InstagramActivity extends FragmentActivity {
 
         instagramHelper.loginFromActivity(this);
 
-
     }
 
 
