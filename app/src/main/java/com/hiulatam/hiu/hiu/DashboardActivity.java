@@ -1,6 +1,8 @@
 package com.hiulatam.hiu.hiu;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -12,13 +14,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.an.customfontview.CustomTextView;
 import com.hiulatam.hiu.hiu.adapter.CelebrityFragmentPagerAdapter;
 import com.hiulatam.hiu.hiu.fragments.CelebrityFragment;
 import com.hiulatam.hiu.hiu.utils.circleTransform;
@@ -44,10 +50,11 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     SearchView searchViewCelebrity;
     TabLayout tabLayoutCelebrity;
     ViewPager viewPagerContent;
+    private NavigationView navigationView;
 
     CelebrityFragmentPagerAdapter celebrityFragmentPagerAdapter;
     private profileUser pefil;
-    private NavigationView navigationView;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -102,6 +109,8 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
 
         tabLayoutCelebrity.setupWithViewPager(viewPagerContent);
 
+        setDivider();
+        changeTabsFont();
 
     }
 
@@ -116,29 +125,55 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    /**
-     * Created by:  Shiny Solutions
-     * Created on:  10/5/17
-     * @return
-     */
-    private List<Fragment> getFragments(){
-        List<Fragment> fragmentList = new ArrayList<Fragment>();
 
-        fragmentList.add(new CelebrityFragment().newInstance("Name"));
-        fragmentList.add(new CelebrityFragment().newInstance("Country"));
-        fragmentList.add(new CelebrityFragment().newInstance("Category"));
-        return fragmentList;
-    }
 
     /**
      * Created by:  Shiny Solutions
      * Created on:  10/5/17
      */
     private void setViewPagerAdapter(){
-        List<Fragment> fragmentList = getFragments();
-        if (celebrityFragmentPagerAdapter == null)
-            celebrityFragmentPagerAdapter = new CelebrityFragmentPagerAdapter(getSupportFragmentManager(), this, fragmentList);
+        if (celebrityFragmentPagerAdapter == null) {
+            celebrityFragmentPagerAdapter = new CelebrityFragmentPagerAdapter(getSupportFragmentManager(), this);
+        }
         viewPagerContent.setAdapter(celebrityFragmentPagerAdapter);
+    }
+
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/6/17
+     */
+    private void setDivider(){
+        View root = tabLayoutCelebrity.getChildAt(0);
+        if (root instanceof LinearLayout){
+            ((LinearLayout) root).setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+            GradientDrawable drawable = new GradientDrawable();
+            drawable.setColor(getResources().getColor(R.color.colorPrimaryDark));
+            drawable.setSize(2, 1);
+            ((LinearLayout) root).setDividerPadding(15);
+            ((LinearLayout) root).setDividerDrawable(drawable);
+        }
+    }
+
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/7/17
+     */
+    private void changeTabsFont() {
+        Typeface font = Typeface.createFromAsset(getAssets(), "fonts/Nanami-Regular.otf");
+        ViewGroup vg = (ViewGroup) tabLayoutCelebrity.getChildAt(0);
+        int tabsCount = vg.getChildCount();
+        for (int j = 0; j < tabsCount; j++) {
+            ViewGroup vgTab = (ViewGroup) vg.getChildAt(j);
+            int tabChildsCount = vgTab.getChildCount();
+            for (int i = 0; i < tabChildsCount; i++) {
+                View tabViewChild = vgTab.getChildAt(i);
+                if (tabViewChild instanceof TextView) {
+                    ((TextView) tabViewChild).setTypeface(font);
+                    ((TextView) tabViewChild).setTextSize(15);
+
+                }
+            }
+        }
     }
 
     /**

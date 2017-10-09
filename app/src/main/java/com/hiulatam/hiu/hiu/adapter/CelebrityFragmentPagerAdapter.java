@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.hiulatam.hiu.hiu.R;
+import com.hiulatam.hiu.hiu.fragments.CelebrityFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,12 +29,13 @@ public class CelebrityFragmentPagerAdapter extends FragmentPagerAdapter {
      * Created on:  10/5/17
      * @param fm
      */
-    public CelebrityFragmentPagerAdapter(FragmentManager fm, Context context, List<Fragment> fragments) {
+    public CelebrityFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
 
-        this.fragments = fragments;
-
         pageTitles = context.getResources().getStringArray(R.array.page_title);
+
+        this.fragments = getFragments();
+
     }
 
     /**
@@ -56,8 +59,29 @@ public class CelebrityFragmentPagerAdapter extends FragmentPagerAdapter {
         return fragments.size();
     }
 
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/7/17
+     * @param position
+     * @return
+     */
     @Override
     public CharSequence getPageTitle(int position){
         return pageTitles[position];
+    }
+
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/5/17
+     * @return
+     */
+    public List<Fragment> getFragments(){
+        List<Fragment> fragmentList = new ArrayList<Fragment>();
+
+        for (int i = 0; i < pageTitles.length; i++){
+            fragmentList.add(new CelebrityFragment().newInstance(pageTitles[i]));
+        }
+
+        return fragmentList;
     }
 }
