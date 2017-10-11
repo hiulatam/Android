@@ -19,4 +19,6 @@
     <dimen name="regular_padding">10dp</dimen>
     <dimen name="large_padding">16dp</dimen>
     <dimen name="very_large_padding">26dp</dimen>
+    <dimen name="extra_large_padding">42dp</dimen>
+
 </resources>

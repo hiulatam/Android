@@ -3,6 +3,7 @@ package com.hiulatam.hiu.hiu.fragments;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -82,9 +83,10 @@ public class CelebrityFragment extends Fragment {
 
     private void init(){
 
-        recyclerViewCelebirty.setHasFixedSize(true);
 
-        reccyclerViewLayoutManager = new LinearLayoutManager(getActivity());
+
+        reccyclerViewLayoutManager = new GridLayoutManager(getActivity(), 1);
+        recyclerViewCelebirty.setHasFixedSize(true);
         recyclerViewCelebirty.setLayoutManager(reccyclerViewLayoutManager);
         recyclerViewCelebirty.setItemAnimator(new DefaultItemAnimator());
 

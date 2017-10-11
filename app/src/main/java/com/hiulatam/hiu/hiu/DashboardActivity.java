@@ -148,7 +148,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             ((LinearLayout) root).setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
             GradientDrawable drawable = new GradientDrawable();
             drawable.setColor(getResources().getColor(R.color.colorPrimaryDark));
-            drawable.setSize(2, 1);
+            drawable.setSize(1, 1);
             ((LinearLayout) root).setDividerPadding(15);
             ((LinearLayout) root).setDividerDrawable(drawable);
         }
