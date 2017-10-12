@@ -145,9 +145,14 @@
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/instagram_button"
-            android:layout_marginStart="10dp"
-   />
-
+            android:layout_marginStart="10dp" />
+        <Button
+            android:id="@+id/btn_twi_login"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/twitter_button"
+            android:layout_marginStart="10dp" />
     </LinearLayout>
 
 

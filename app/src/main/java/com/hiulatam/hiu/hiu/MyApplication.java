@@ -24,6 +24,7 @@ public class MyApplication  extends Application {
         super.onCreate();
         // Required initialization logic here!
          profile=new profileUser();
+
         // Add code to print out the key hash
         try {
             PackageInfo info = getPackageManager().getPackageInfo(

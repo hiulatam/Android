@@ -10,6 +10,7 @@ import com.facebook.login.LoginManager;
 import com.hiulatam.hiu.hiu.MyApplication;
 import com.steelkiwi.instagramhelper.model.InstagramUser;
 import com.steelkiwi.instagramhelper.utils.SharedPrefUtils;
+import com.twitter.sdk.android.core.models.User;
 
 /**
  * Created by ltaleron on 10/3/17.
@@ -19,7 +20,7 @@ public class profileUser implements Parcelable {
 
     public Profile profilefacebok;
     public InstagramUser profileInstagram;
-
+    public User profileTwitter;
 
 
     public profileUser() {
@@ -61,12 +62,14 @@ public class profileUser implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.profilefacebok, flags);
-
+       // dest.writeParcelable(this.profileInstagram, flags);
+        dest.writeSerializable(this.profileTwitter);
     }
 
     protected profileUser(Parcel in) {
         this.profilefacebok = in.readParcelable(Profile.class.getClassLoader());
         this.profileInstagram = in.readParcelable(InstagramUser.class.getClassLoader());
+        this.profileTwitter = (User) in.readSerializable();
     }
 
     public static final Creator<profileUser> CREATOR = new Creator<profileUser>() {

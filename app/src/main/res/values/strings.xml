@@ -23,6 +23,8 @@
     <string name="fb_login_protocol_scheme">fb1931307483801819</string>
     <string name="instagram_app_id">07b61414512a45dcb8e86e087431f2a2</string>
     <string name="instagram_scheme">fb1931307483801819</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">Ba26v4km8xF5gsO69DlCw0Lq4</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">N1biYkzjfJjgL1UwPyhyExDwE4e8EyFGhG9DfJS4wyTym3eEht</string>
 
     <!-- REQUIRED FOR GENERAL APP FUNCTIONALITY - YOU MAY WANT TO KEEP THESE -->
 

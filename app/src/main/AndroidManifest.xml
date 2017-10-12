@@ -58,6 +58,8 @@
         <activity
             android:name=".InstagramActivity"
             android:label="@string/title_activity_insta"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".TwitterActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

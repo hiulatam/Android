@@ -23,13 +23,14 @@ import com.hiulatam.hiu.hiu.utils.profileUser;
 import com.steelkiwi.instagramhelper.InstagramHelper;
 import com.steelkiwi.instagramhelper.model.InstagramUser;
 import com.steelkiwi.instagramhelper.utils.SharedPrefUtils;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
 
 import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity implements FacebookCallback {
 
     private static final String TAG ="facebook login:   " ;
-    private Button btn_fb_login,btn_ins_login;
+    private Button btn_fb_login,btn_ins_login,btn_twi_login;
     private CallbackManager callbackManager;
     private ProfileTracker profileTracker;
     private Context mContext;
@@ -42,8 +43,8 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        info= (ImageView) findViewById(R.id.imageInfo);
-        //facebook sdk
+
+         //facebook sdk
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager,this);
@@ -64,14 +65,12 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
         }else if(profileUser.isLoggedInInstagram(this)){
             InstagramSuccess();
         }
-
-
-
-
-
         bindComponents();
         init();
         addListeners();
+
+
+
 
 
 
@@ -150,9 +149,11 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
      * Created on:  09/30/2017
      */
     private void bindComponents(){
+        info= (ImageView) findViewById(R.id.imageInfo);
         buttonSignIn = (CustomButton) findViewById(R.id.sign_in);
         btn_fb_login = (Button)findViewById(R.id.btn_fb_login);
         btn_ins_login = (Button)findViewById(R.id.btn_ins_login);
+        btn_twi_login = (Button) findViewById(R.id.btn_twi_login);
     }
 
     /**
@@ -191,6 +192,13 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(LoginActivity.this,Walkthrough.class);
+                startActivity(intent);
+            }
+        });
+        btn_twi_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(LoginActivity.this,TwitterActivity.class);
                 startActivity(intent);
             }
         });
