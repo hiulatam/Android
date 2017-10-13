@@ -30,6 +30,9 @@ import com.hiulatam.hiu.hiu.fragments.CelebrityFragment;
 import com.hiulatam.hiu.hiu.utils.circleTransform;
 import com.hiulatam.hiu.hiu.utils.profileUser;
 import com.squareup.picasso.Picasso;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.internal.TwitterApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +74,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             facebookprofilefill();
         }else if(profileUser.isLoggedInInstagram(this)){
             Instagramprofilefill();
+        }
+        else if(profileUser.isLoggedInTwitter(this)){
+            Twitterprofilefill();
         }
     }
 
@@ -235,6 +241,22 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         TextView mail_user = (TextView)hView.findViewById(R.id.textView);
         mail_user.setText("");
     }
+    private void Twitterprofilefill() {
+        View hView =  navigationView.getHeaderView(0);
+        TextView nav_user = (TextView)hView.findViewById(R.id.username);
+        nav_user.setText(pefil.profileTwitter.name);
+        ImageView img_user = (ImageView) hView.findViewById(R.id.imageView);
+       //String  a= pefil.profileTwitter.profileBackgroundImageUrl;
+        String  b= pefil.profileTwitter.profileImageUrl;
+        Picasso.with(this)
+                .load(b.replace("_normal",""))
+                .placeholder(R.drawable.tw__composer_logo_white)
+                .error(android.R.drawable.sym_def_app_icon)
+                .transform(new circleTransform())
+                .into(img_user);
+        TextView mail_user = (TextView)hView.findViewById(R.id.textView);
+        mail_user.setText("");
+    }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -263,6 +285,12 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 Intent intent= new Intent(this,LoginActivity.class);
                 startActivity(intent);
             }
+            else if(profileUser.isLoggedInTwitter(this)){
+                TwitterCore.getInstance().getSessionManager().clearActiveSession();
+                Intent intent= new Intent(this,LoginActivity.class);
+                startActivity(intent);
+            }
+
 
         }
 

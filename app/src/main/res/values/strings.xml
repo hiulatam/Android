@@ -25,6 +25,7 @@
     <string name="instagram_scheme">fb1931307483801819</string>
     <string name="com.twitter.sdk.android.CONSUMER_KEY">Ba26v4km8xF5gsO69DlCw0Lq4</string>
     <string name="com.twitter.sdk.android.CONSUMER_SECRET">N1biYkzjfJjgL1UwPyhyExDwE4e8EyFGhG9DfJS4wyTym3eEht</string>
+    <string name="preference_file_key">User_data</string>
 
     <!-- REQUIRED FOR GENERAL APP FUNCTIONALITY - YOU MAY WANT TO KEEP THESE -->
 

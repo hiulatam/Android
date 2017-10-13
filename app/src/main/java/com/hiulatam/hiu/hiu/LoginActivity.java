@@ -23,7 +23,14 @@ import com.hiulatam.hiu.hiu.utils.profileUser;
 import com.steelkiwi.instagramhelper.InstagramHelper;
 import com.steelkiwi.instagramhelper.model.InstagramUser;
 import com.steelkiwi.instagramhelper.utils.SharedPrefUtils;
+import com.twitter.sdk.android.core.Callback;
+import com.twitter.sdk.android.core.Result;
+import com.twitter.sdk.android.core.TwitterApiClient;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterException;
+import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+import com.twitter.sdk.android.core.models.User;
 
 import java.util.Arrays;
 
@@ -64,6 +71,9 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
             facebookSuccess();
         }else if(profileUser.isLoggedInInstagram(this)){
             InstagramSuccess();
+        }else if(profileUser.isLoggedInTwitter(this)){
+            TwitterSuccess();
+
         }
         bindComponents();
         init();
@@ -114,6 +124,12 @@ public class LoginActivity extends AppCompatActivity implements FacebookCallback
         Intent intent= new Intent(LoginActivity.this,DashboardActivity.class);
         intent.putExtra("profile", MyApplication.profile);
         startActivity(intent);
+    }
+
+    public void TwitterSuccess() {
+        TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
+       // MyApplication.profile.profileInstagram=instagramUser;
+        TwitterActivity.getUserProfile(this);
     }
 
     @Override

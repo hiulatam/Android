@@ -1,6 +1,8 @@
 package com.hiulatam.hiu.hiu;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,8 +48,9 @@ public class TwitterActivity extends FragmentActivity {
                 String secret = authToken.secret;
                 Long id_user=session.getUserId();
                 //User user = showUser(id_user);
-                getUserProfile(token);
+                getUserProfile(TwitterActivity.this);
                // Twu user = instagramHelper.getInstagramUser(this);
+               // Log.i(TAG,"ups! getting user error");
 
 
             }
@@ -65,7 +68,7 @@ public class TwitterActivity extends FragmentActivity {
 
     }
 
-    private void getUserProfile(final String userToken) {
+    public static void getUserProfile(final Context contex) {
         TwitterApiClient twitterApiClient = TwitterCore.getInstance().getApiClient();
         twitterApiClient.getAccountService().verifyCredentials(true,true,false).enqueue(new Callback<User>() {
             @Override
@@ -80,17 +83,21 @@ public class TwitterActivity extends FragmentActivity {
                     String userLastNmae = fullname.substring(fullname.lastIndexOf(" "));
                     String userScreenName = user.screenName;
                     MyApplication.profile.profileTwitter=user;
-                    Intent intent= new Intent(TwitterActivity.this,DashboardActivity.class);
-                    intent.putExtra("profile", MyApplication.profile);
-                    startActivity(intent);
+                    Intent inten= new Intent(contex,DashboardActivity.class);
+                    contex.startActivity(inten);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             @Override
             public void failure(TwitterException e) {
+
                 Log.i(TAG,"ups! getting user error");
+
             }
+
+
         });
 
 

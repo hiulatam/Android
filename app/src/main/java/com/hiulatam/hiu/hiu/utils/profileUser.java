@@ -1,6 +1,7 @@
 package com.hiulatam.hiu.hiu.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -8,9 +9,19 @@ import com.facebook.AccessToken;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.hiulatam.hiu.hiu.MyApplication;
+import com.hiulatam.hiu.hiu.R;
+import com.hiulatam.hiu.hiu.TwitterActivity;
+import com.steelkiwi.instagramhelper.model.Counts;
+import com.steelkiwi.instagramhelper.model.Data;
 import com.steelkiwi.instagramhelper.model.InstagramUser;
 import com.steelkiwi.instagramhelper.utils.SharedPrefUtils;
+import com.twitter.sdk.android.core.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthToken;
+import com.twitter.sdk.android.core.TwitterCore;
+import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.User;
+
+import java.io.Serializable;
 
 /**
  * Created by ltaleron on 10/3/17.
@@ -18,6 +29,7 @@ import com.twitter.sdk.android.core.models.User;
 
 public class profileUser implements Parcelable {
 
+    public final static String TAG_USER="user";
     public Profile profilefacebok;
     public InstagramUser profileInstagram;
     public User profileTwitter;
@@ -34,11 +46,33 @@ public class profileUser implements Parcelable {
     }
 
     public static boolean isLoggedInInstagram(Context context) {
-        String token = SharedPrefUtils.getToken(context);
-        MyApplication.profile.profileInstagram=SharedPrefUtils.getInstagramUser(context);
+       String token = SharedPrefUtils.getToken(context);
+       // MyApplication.profile.profileInstagram=SharedPrefUtils.getInstagramUser(context);
 
         return token != null;
     }
+
+    public static boolean isLoggedInTwitter(Context contex) {
+        Twitter.initialize(contex);
+        TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
+        TwitterAuthToken authToken;
+        if(session!=null){
+             authToken = session.getAuthToken();
+            return true;
+        }
+          else{
+            return false;
+        }
+
+
+
+    }
+
+
+
+
+
+
 
     /**
      * Logout From Facebook
@@ -63,7 +97,7 @@ public class profileUser implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelable(this.profilefacebok, flags);
        // dest.writeParcelable(this.profileInstagram, flags);
-        dest.writeSerializable(this.profileTwitter);
+        //dest.writeSerializable(this.profileTwitter);
     }
 
     protected profileUser(Parcel in) {
