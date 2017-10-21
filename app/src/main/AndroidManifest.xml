@@ -55,12 +55,19 @@
         <activity
             android:name=".DashboardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".InstagramActivity"
             android:label="@string/title_activity_insta"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TwitterActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".DetailActivity"
+            android:parentActivityName=".DashboardActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity"/>
+        </activity>
     </application>
 
 </manifest>

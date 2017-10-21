@@ -201,6 +201,10 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         }
     };
 
+    /**
+     * Created by: Shiny Solutions
+     * Created on: 10/12/17
+     */
     SearchView.OnCloseListener onCloseListener = new SearchView.OnCloseListener() {
         @Override
         public boolean onClose() {
@@ -209,7 +213,6 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
             return false;
         }
     };
-
 
 
     private void facebookprofilefill() {

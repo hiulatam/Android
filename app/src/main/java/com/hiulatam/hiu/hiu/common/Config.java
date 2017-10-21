@@ -9,9 +9,10 @@ import android.nfc.Tag;
 
 public class Config {
 
-    public static final String Tag = "com.hiulatam.hiu.hiu";
+    public static final String TAG = "com.hiulatam.hiu.hiu";
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
+    public static final String EXTRA_CELEBRITY_ITEM = "EXTRA_CELEBRITY_ITEM";
 
 
 }

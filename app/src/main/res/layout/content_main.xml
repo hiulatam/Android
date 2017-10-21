@@ -12,22 +12,22 @@
 
     <LinearLayout
         android:id="@+id/layout_select_your_category"
-        android:layout_width="368dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/view_pager_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:layout_editor_absoluteX="8dp">
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <com.an.customfontview.CustomTextView
             android:id="@+id/customTextView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/select_your_category"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/large_font" />
+            style="@style/smallFont.colorPrimary"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -36,11 +36,14 @@
     </LinearLayout>
 
     <android.support.v4.view.ViewPager
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/view_pager_content"
         app:layout_constraintTop_toBottomOf="@+id/layout_select_your_category"
-        tools:layout_editor_absoluteX="8dp"></android.support.v4.view.ViewPager>
+        tools:layout_editor_absoluteX="8dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"></android.support.v4.view.ViewPager>
 
 
 

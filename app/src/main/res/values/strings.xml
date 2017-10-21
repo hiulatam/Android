@@ -207,5 +207,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Charity Detail-->
+    <string name="message">Message</string>
+    <string name="complete_form">Complete form with necessary data.</string>
+    <string name="lucky_one">Who is the lucky one?</string>
+    <string name="your_words">Your Words</string>
+    <string name="numberOfCharacters">Less than xxxxx characters</string>
+    <string name="value">Value</string>
+    <string name="value1">50 USD</string>
+    <string name="next">Next</string>
+
+
 
 </resources>

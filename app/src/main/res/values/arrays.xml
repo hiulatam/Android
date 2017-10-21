@@ -9,4 +9,8 @@
         <item>@string/category</item>
         <item>@string/country</item>
     </string-array>
+
+    <string-array name="messageValues">
+        <item>@string/value1</item>
+    </string-array>
 </resources>

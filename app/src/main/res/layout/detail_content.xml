@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.hiulatam.hiu.hiu.DetailActivity"
+    tools:showIn="@layout/activity_detail">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.an.customfontview.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_form"
+            android:layout_marginLeft="@dimen/large_padding"
+            android:layout_marginTop="@dimen/large_padding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/text_view_complete_form"
+            style="@style/smallFont.colorPrimary"
+            android:layout_marginStart="@dimen/large_padding" />
+
+        <com.an.customfontview.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lucky_one"
+            app:layout_constraintLeft_toLeftOf="@+id/text_view_complete_form"
+            android:layout_marginTop="@dimen/very_large_padding"
+            app:layout_constraintTop_toTopOf="@+id/text_view_complete_form"
+            style="@style/regularFont.black.shadow"
+            android:id="@+id/lucky_one"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayoutName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_shadow_bg"
+            android:paddingLeft="@dimen/large_padding"
+            android:paddingTop="@dimen/regular_padding"
+            android:paddingBottom="@dimen/large_padding"
+            app:layout_constraintTop_toBottomOf="@+id/lucky_one"
+            app:layout_constraintLeft_toLeftOf="@+id/lucky_one"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="@dimen/large_padding">
+
+            <com.an.customfontview.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name"
+                android:id="@+id/text_view_name"
+                style="@style/smallFont.colorPrimary" />
+
+            <com.an.customfontview.CustomEditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_bg"
+                android:id="@+id/editTextName"
+                android:lines="1"
+                app:layout_constraintTop_toTopOf="@+id/text_view_name"
+                android:layout_marginTop="@dimen/very_large_padding"
+                app:layout_constraintLeft_toLeftOf="@+id/text_view_name"
+                app:layout_constraintRight_toRightOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <com.an.customfontview.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message"
+            android:id="@+id/text_view_message"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutName"
+            android:layout_marginTop="@dimen/extra_large_padding"
+            app:layout_constraintLeft_toLeftOf="@+id/constraintLayoutName"
+            style="@style/regularFont.black.shadow"/>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayoutMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_shadow_bg"
+            android:paddingLeft="@dimen/large_padding"
+            android:paddingTop="@dimen/regular_padding"
+            android:paddingBottom="@dimen/large_padding"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_message"
+            app:layout_constraintLeft_toLeftOf="@+id/text_view_message"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginRight="@dimen/large_padding">
+
+
+
+            <com.an.customfontview.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_words"
+                android:id="@+id/textViewYourWords"
+                style="@style/smallFont.colorPrimary" />
+
+            <com.an.customfontview.CustomEditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:id="@+id/editTextYourWords"
+                android:lines="3"
+                app:layout_constraintTop_toTopOf="@+id/textViewYourWords"
+                android:layout_marginTop="@dimen/very_large_padding"
+                app:layout_constraintLeft_toLeftOf="@+id/textViewYourWords"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="@dimen/large_padding"
+                android:layout_marginEnd="@dimen/large_padding" />
+
+            <com.an.customfontview.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/verySmallFont.colorPrimary"
+                android:text="@string/numberOfCharacters"
+                app:layout_constraintTop_toBottomOf="@+id/editTextYourWords"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/edit_text_bg"
+                android:paddingEnd="@dimen/large_padding"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayoutValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_shadow_bg"
+            android:paddingLeft="@dimen/large_padding"
+            android:paddingTop="@dimen/regular_padding"
+            android:paddingBottom="@dimen/large_padding"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutMessage"
+            app:layout_constraintLeft_toLeftOf="@+id/constraintLayoutMessage"
+            app:layout_constraintRight_toRightOf="@+id/constraintLayoutMessage"
+            android:layout_marginTop="@dimen/large_padding"
+            android:layout_marginLeft="@dimen/extra_large_padding"
+            android:layout_marginRight="@dimen/extra_large_padding">
+
+            <com.an.customfontview.CustomTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/value"
+                android:id="@+id/textViewValue"
+                style="@style/smallFont.colorPrimary" />
+
+            <Spinner
+                android:id="@+id/spinnerValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_dropdown_bg"
+                android:spinnerMode="dropdown"
+                android:paddingRight="@dimen/extra_large_padding"
+                app:layout_constraintTop_toBottomOf="@+id/textViewValue"
+                app:layout_constraintLeft_toLeftOf="@+id/textViewValue"
+                app:layout_constraintRight_toRightOf="parent"></Spinner>
+
+
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <com.an.customfontview.CustomButton
+            android:id="@+id/buttonNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayoutValue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginTop="@dimen/large_padding"/>
+
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/buttonNext"
+            android:minHeight="@dimen/extra_large_padding"></View>
+
+
+
+
+
+
+
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -1,18 +1,21 @@
 package com.hiulatam.hiu.hiu.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hiulatam.hiu.hiu.DetailActivity;
 import com.hiulatam.hiu.hiu.R;
 import com.hiulatam.hiu.hiu.adapter.CelebrityItemAdapter;
 import com.hiulatam.hiu.hiu.common.Config;
+import com.hiulatam.hiu.hiu.interfaces.ClickListener;
 import com.hiulatam.hiu.hiu.modal.CelebrityItemModal;
 
 import java.util.ArrayList;
@@ -67,6 +70,11 @@ public class CelebrityFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/7/2017
+     * @param savedInstanceState
+     */
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
@@ -77,10 +85,18 @@ public class CelebrityFragment extends Fragment {
         addListeners();
     }
 
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/7/2017
+     */
     private void bindComponents(){
         recyclerViewCelebirty = getView().findViewById(R.id.recycler_view_celebrity);
     }
 
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/7/2017
+     */
     private void init(){
 
 
@@ -97,16 +113,30 @@ public class CelebrityFragment extends Fragment {
 
     }
 
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/7/2017
+     */
     private void addListeners(){
 
     }
 
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/7/2017
+     */
     private void setCelebrityItemAdapter(){
         if (celebrityItemAdapter == null)
             celebrityItemAdapter = new CelebrityItemAdapter(setCelebrityItemModalList());
+        celebrityItemAdapter.setOnClickListener(clickListener);
         recyclerViewCelebirty.setAdapter(celebrityItemAdapter);
     }
 
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/7/2017
+     * @return
+     */
     private List<CelebrityItemModal> setCelebrityItemModalList(){
         List<CelebrityItemModal> celebrityItemModalList = new ArrayList<CelebrityItemModal>();
 
@@ -127,6 +157,28 @@ public class CelebrityFragment extends Fragment {
 
         return celebrityItemModalList;
     }
+
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/12/2017
+     */
+    ClickListener clickListener = new ClickListener() {
+        @Override
+        public void onClick(View view, int position) {
+            Log.i(Config.TAG, TAG + "clickListener - onClick");
+            Intent intent = new Intent();
+            intent.setClass(getActivity(), DetailActivity.class);
+            intent.putExtra(Config.EXTRA_CELEBRITY_ITEM, celebrityItemAdapter.getItem(position));
+            startActivity(intent);
+        }
+
+        @Override
+        public void onLongClick(View view, int position) {
+
+        }
+    };
+
+
 
 
 }

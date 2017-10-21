@@ -1,5 +1,8 @@
 package com.hiulatam.hiu.hiu.modal;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
 /**
@@ -7,12 +10,34 @@ import java.io.Serializable;
  * Created on:  10/8/17.
  */
 
-public class CelebrityItemModal implements Serializable {
+public class CelebrityItemModal implements Parcelable {
 
     private String image;
     private String name;
     private String article;
     private String percentage;
+
+    public CelebrityItemModal() {
+    }
+
+    protected CelebrityItemModal(Parcel in) {
+        image = in.readString();
+        name = in.readString();
+        article = in.readString();
+        percentage = in.readString();
+    }
+
+    public static final Creator<CelebrityItemModal> CREATOR = new Creator<CelebrityItemModal>() {
+        @Override
+        public CelebrityItemModal createFromParcel(Parcel in) {
+            return new CelebrityItemModal(in);
+        }
+
+        @Override
+        public CelebrityItemModal[] newArray(int size) {
+            return new CelebrityItemModal[size];
+        }
+    };
 
     public String getImage() {
         return image;
@@ -44,5 +69,18 @@ public class CelebrityItemModal implements Serializable {
 
     public void setPercentage(String percentage) {
         this.percentage = percentage;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(image);
+        parcel.writeString(name);
+        parcel.writeString(article);
+        parcel.writeString(percentage);
     }
 }
