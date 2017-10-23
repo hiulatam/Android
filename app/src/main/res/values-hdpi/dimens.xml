@@ -29,13 +29,6 @@
     <dimen name="charity_content_square_difference_two">50dp</dimen>
     <dimen name="charity_content_square_difference_three">75dp</dimen>
     <dimen name="charity_content_square_one">150dp</dimen>
-    <dimen name="charity_content_square_one_one">151dp</dimen>
-    <dimen name="charity_content_square_one_two">152dp</dimen>
-    <dimen name="charity_content_square_one_three">153dp</dimen>
-    <dimen name="charity_content_square_one_four">154dp</dimen>
-    <dimen name="charity_content_square_one_five">155dp</dimen>
-    <dimen name="charity_content_square_one_six">156dp</dimen>
-    <dimen name="charity_content_square_one_seven">157dp</dimen>
     <dimen name="charity_content_square_two">175dp</dimen>
     <dimen name="charity_content_square_three">200dp</dimen>
     <dimen name="charity_content_square_four">225dp</dimen>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:width="@dimen/charity_content_square_three" android:height="@dimen/charity_content_square_one" android:gravity="center_horizontal">
+        <shape android:shape="rectangle">
+            <solid android:color="#EDEEEF"></solid>
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_four" android:height="@dimen/charity_content_square_one" android:top="@dimen/charity_content_square_difference_one" android:gravity="center_horizontal">
+
+        <shape android:shape="rectangle">
+            <solid android:color="#E2E3E4"></solid>
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_five" android:height="@dimen/charity_content_square_one" android:top="@dimen/charity_content_square_difference_two" android:gravity="center_horizontal">
+
+        <shape android:shape="rectangle">
+            <solid android:color="#DCDDDE"></solid>
+        </shape>
+    </item>
+    <!-- Drop Shadow Stack -->
+    <item android:width="@dimen/charity_content_square_six" android:height="@dimen/charity_content_square_one" android:top="@dimen/charity_content_square_difference_three" android:gravity="center_horizontal">
+        <shape>
+            <padding android:top="0dp" android:right="0dp" android:bottom="1dp" android:left="0dp" />
+            <solid android:color="#02000000" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_six" android:height="@dimen/charity_content_square_one_one" android:top="@dimen/charity_content_square_difference_three" android:gravity="center_horizontal">
+        <shape>
+            <padding android:top="0dp" android:right="0dp" android:bottom="1dp" android:left="0dp" />
+            <solid android:color="#05000000" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_six" android:height="@dimen/charity_content_square_one_two" android:top="@dimen/charity_content_square_difference_three" android:gravity="center_horizontal">
+        <shape>
+            <padding android:top="0dp" android:right="0dp" android:bottom="1dp" android:left="0dp" />
+            <solid android:color="#10000000" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_six" android:height="@dimen/charity_content_square_one_three" android:top="@dimen/charity_content_square_difference_three" android:gravity="center_horizontal">
+        <shape>
+            <padding android:top="0dp" android:right="0dp" android:bottom="1dp" android:left="0dp" />
+            <solid android:color="#15000000" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_six" android:height="@dimen/charity_content_square_one_four" android:top="@dimen/charity_content_square_difference_three" android:gravity="center_horizontal">
+        <shape>
+            <padding android:top="0dp" android:right="0dp" android:bottom="1dp" android:left="0dp" />
+            <solid android:color="#20000000" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_six" android:height="@dimen/charity_content_square_one_five" android:top="@dimen/charity_content_square_difference_three" android:gravity="center_horizontal">
+        <shape>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#25000000" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_six" android:height="@dimen/charity_content_square_one_six" android:top="@dimen/charity_content_square_difference_three" android:gravity="center_horizontal">
+        <shape>
+            <padding android:top="1dp" android:right="1dp" android:bottom="1dp" android:left="1dp" />
+            <solid android:color="#30000000" />
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+    <item android:width="@dimen/charity_content_square_six" android:height="@dimen/charity_content_square_one" android:top="@dimen/charity_content_square_difference_three" android:gravity="center_horizontal">
+
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary"></solid>
+        </shape>
+    </item>
+</layer-list>

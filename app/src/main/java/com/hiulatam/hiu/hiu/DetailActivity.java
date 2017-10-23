@@ -1,11 +1,14 @@
 package com.hiulatam.hiu.hiu;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -27,6 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     ImageView imageViewCelebrity;
     CustomTextView textViewCelebrityName, textViewCelebrityArticle, textViewCelebrityPercentage;
     Spinner spinnerValues;
+    Button buttonNext;
 
     private String title, subTitle;
     private String[] values;
@@ -65,6 +69,8 @@ public class DetailActivity extends AppCompatActivity {
         textViewCelebrityPercentage = (CustomTextView) findViewById(R.id.text_view_celebrity_percentage);
 
         spinnerValues = (Spinner) findViewById(R.id.spinnerValue);
+
+        buttonNext = (Button) findViewById(R.id.buttonNext);
     }
 
     /**
@@ -107,6 +113,7 @@ public class DetailActivity extends AppCompatActivity {
      * Created on: 9/30/17
      */
     public void addListeners(){
+        buttonNext.setOnClickListener(onClickListener);
     }
 
     /**
@@ -118,4 +125,19 @@ public class DetailActivity extends AppCompatActivity {
         arrayAdapterValues.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerValues.setAdapter(arrayAdapterValues);
     }
+
+    private void openCharitySelection(){
+        Intent intent = new Intent();
+        intent.setClass(this, CharityActivity.class);
+        intent.putExtra(Config.EXTRA_CELEBRITY_ITEM, celebrityItemModal);
+        startActivity(intent);
+        finish();
+    }
+
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            openCharitySelection();
+        }
+    };
 }

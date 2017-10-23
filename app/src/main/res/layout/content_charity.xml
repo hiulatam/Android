@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.hiulatam.hiu.hiu.CharityActivity"
+    tools:showIn="@layout/app_bar_charity">
+
+    <FrameLayout
+        android:id="@+id/frameLayoutDesired"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_charity_header"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:minHeight="@dimen/double_extra_large_padding">
+
+        <com.an.customfontview.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/select_the_desired_charity"
+            style="@style/regularFont.white"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayoutCharityName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutDesired"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/shape_content_charity">
+
+        <com.an.customfontview.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/charity_name"
+            style="@style/largeFont.white"
+            android:layout_marginTop="@dimen/charity_content_square_difference_three"
+            android:layout_marginLeft="@dimen/charity_content_square_difference_one"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_plus"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/charity_content_square_difference_three"
+            android:layout_marginRight="@dimen/charity_content_square_difference_one"/>
+        <com.an.customfontview.CustomTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/learn_more"
+            android:layout_gravity="left|bottom"
+            android:layout_marginLeft="@dimen/charity_content_square_difference_one"
+            style="@style/regularFont.white"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginRight="@dimen/charity_content_square_difference_one"
+            android:src="@drawable/icon_charity_app"/>
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imageViewAddCharities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_star"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayoutCharityName"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <com.an.customfontview.CustomTextView
+        android:id="@+id/textViewAddCharities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_to_my_charities"
+        style="@style/verySmallFont.colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAddCharities"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="@dimen/regular_padding"/>
+
+    <Button
+        android:id="@+id/buttonNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAddCharities"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="@dimen/regular_padding"/>
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNext"
+        android:minHeight="@dimen/extra_large_padding"></View>
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>
