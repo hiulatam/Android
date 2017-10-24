@@ -1,5 +1,6 @@
 package com.hiulatam.hiu.hiu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -27,6 +29,7 @@ public class CharityActivity extends AppCompatActivity {
     Toolbar toolbar;
     SearchView searchViewCelebrity;
     LinearLayout linearLayoutTitle;
+    Button buttonNext;
 
     private CelebrityItemModal celebrityItemModal;
 
@@ -54,6 +57,8 @@ public class CharityActivity extends AppCompatActivity {
         searchViewCelebrity = (SearchView) findViewById(R.id.search_view_celebrity);
 
         linearLayoutTitle = (LinearLayout) findViewById(R.id.linear_layout_title);
+
+        buttonNext = (Button) findViewById(R.id.buttonNext);
     }
 
     /**
@@ -80,6 +85,18 @@ public class CharityActivity extends AppCompatActivity {
         imageButtonNavigationView.setOnClickListener(onClickListener);
         searchViewCelebrity.setOnSearchClickListener(onClickListener);
         searchViewCelebrity.setOnCloseListener(onCloseListener);
+        buttonNext.setOnClickListener(onClickListener);
+    }
+
+    /**
+     * Created by:  Shiny Solutions
+     * Created on:  10/23/17
+     */
+    private void openPaymentDetail(){
+        Intent intent = new Intent();
+        intent.setClass(this, PaymentDetailActivity.class);
+        intent.putExtra(Config.EXTRA_CELEBRITY_ITEM, celebrityItemModal);
+        startActivity(intent);
     }
 
     /**
@@ -96,6 +113,9 @@ public class CharityActivity extends AppCompatActivity {
                 case R.id.search_view_celebrity:
                     imageButtonNavigationView.setVisibility(View.GONE);
                     linearLayoutTitle.setVisibility(View.GONE);
+                    break;
+                case R.id.buttonNext:
+                    openPaymentDetail();
                     break;
             }
         }

@@ -221,6 +221,15 @@
     <string name="charity_name">Charity Name</string>
     <string name="learn_more">Learn more</string>
     <string name="add_to_my_charities">Add to my charities</string>
+    
+    <!--Payment Details-->
+    <string name="payment_details">Payment Details</string>
+    <string name="charity">Charity</string>
+    <string name="total">Total</string>
+    <string name="card_number">Card Number</string>
+    <string name="exp_date">Exp. Date</string>
+    <string name="cvv">CVV</string>
+    <string name="done">Done!</string>
 
 
 
