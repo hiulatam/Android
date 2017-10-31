@@ -292,6 +292,9 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 TwitterCore.getInstance().getSessionManager().clearActiveSession();
                 Intent intent= new Intent(this,LoginActivity.class);
                 startActivity(intent);
+            }else{
+                Intent intent= new Intent(this,LoginActivity.class);
+                startActivity(intent);
             }
 
 
