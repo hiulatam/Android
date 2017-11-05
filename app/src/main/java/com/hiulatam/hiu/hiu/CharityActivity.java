@@ -2,6 +2,7 @@ package com.hiulatam.hiu.hiu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -12,8 +13,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
+import com.hiulatam.hiu.hiu.adapter.CharityStackAdapter;
 import com.hiulatam.hiu.hiu.common.Config;
 import com.hiulatam.hiu.hiu.modal.CelebrityItemModal;
+import com.yuyakaido.android.cardstackview.CardStackView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by:  Shiny Solutions
@@ -30,8 +37,11 @@ public class CharityActivity extends AppCompatActivity {
     SearchView searchViewCelebrity;
     LinearLayout linearLayoutTitle;
     Button buttonNext;
+    CardStackView cardStackViewCharity;
 
     private CelebrityItemModal celebrityItemModal;
+
+    private CharityStackAdapter charityStackAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -59,6 +69,8 @@ public class CharityActivity extends AppCompatActivity {
         linearLayoutTitle = (LinearLayout) findViewById(R.id.linear_layout_title);
 
         buttonNext = (Button) findViewById(R.id.buttonNext);
+
+        cardStackViewCharity = (CardStackView) findViewById(R.id.cardStackViewChairty);
     }
 
     /**
@@ -75,6 +87,8 @@ public class CharityActivity extends AppCompatActivity {
                 celebrityItemModal = (CelebrityItemModal) extras.getParcelable(Config.EXTRA_CELEBRITY_ITEM);
             }
         }
+
+        setCharityAdapter();
     }
 
     /**
@@ -97,6 +111,34 @@ public class CharityActivity extends AppCompatActivity {
         intent.setClass(this, PaymentDetailActivity.class);
         intent.putExtra(Config.EXTRA_CELEBRITY_ITEM, celebrityItemModal);
         startActivity(intent);
+    }
+
+    private void setCharityAdapter(){
+        if (charityStackAdapter == null){
+            charityStackAdapter = new CharityStackAdapter(this, setCelebrityItemModalList());
+        }
+        cardStackViewCharity.setAdapter(charityStackAdapter);
+    }
+
+    private ArrayList<CelebrityItemModal> setCelebrityItemModalList(){
+        ArrayList<CelebrityItemModal> celebrityItemModalList = new ArrayList<CelebrityItemModal>();
+
+        CelebrityItemModal celebrityItemModal = new CelebrityItemModal();
+        celebrityItemModal.setImage("andres_cepeda");
+        celebrityItemModal.setName("Andres Cepeda");
+        celebrityItemModal.setArticle("Musico");
+        celebrityItemModal.setPercentage("6.2");
+        celebrityItemModalList.add(celebrityItemModal);
+
+        celebrityItemModal = new CelebrityItemModal();
+        celebrityItemModal.setImage("scarlett_johansson");
+        celebrityItemModal.setName("Scarlett Johansson");
+        celebrityItemModal.setArticle("Actriz");
+        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModalList.add(celebrityItemModal);
+
+
+        return celebrityItemModalList;
     }
 
     /**

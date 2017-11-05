@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintlayoutCharityItem">
+
+    <ImageView
+        android:id="@+id/imageViewCharity"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/charity_content_square_five"
+        android:src="@drawable/shape_content_charity_item"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="@dimen/regular_padding"
+        android:layout_marginRight="@dimen/regular_padding" />
+
+    <com.an.customfontview.CustomTextView
+        android:id="@+id/customTextViewCharityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/charity_name"
+        style="@style/largeFont.white"
+        app:layout_constraintLeft_toLeftOf="@+id/imageViewCharity"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCharity"
+        android:layout_marginTop="@dimen/regular_padding"
+        android:layout_marginLeft="@dimen/charity_content_square_difference_one"
+        android:layout_marginStart="@dimen/charity_content_square_difference_one" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_plus"
+        android:layout_gravity="right"
+        app:layout_constraintRight_toRightOf="@+id/imageViewCharity"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCharity"
+        android:layout_marginTop="@dimen/regular_padding"
+        android:layout_marginRight="@dimen/charity_content_square_difference_one"
+        android:layout_marginEnd="@dimen/charity_content_square_difference_one" />
+    <com.an.customfontview.CustomTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/learn_more"
+        android:layout_gravity="left|bottom"
+        app:layout_constraintLeft_toLeftOf="@+id/imageViewCharity"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewCharity"
+        android:layout_marginLeft="@dimen/charity_content_square_difference_one"
+        android:layout_marginBottom="@dimen/regular_padding"
+        style="@style/regularFont.white"
+        android:layout_marginStart="@dimen/charity_content_square_difference_one" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        app:layout_constraintRight_toRightOf="@+id/imageViewCharity"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewCharity"
+        android:layout_marginRight="@dimen/charity_content_square_difference_one"
+        android:layout_marginBottom="@dimen/regular_padding"
+        android:src="@drawable/icon_charity_app"
+        android:layout_marginEnd="@dimen/charity_content_square_difference_one" />
+
+</android.support.constraint.ConstraintLayout>

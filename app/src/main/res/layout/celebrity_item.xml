@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/andres_cepeda"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:id="@+id/image_view_celebrity"/>
 
             <ImageView
@@ -30,7 +30,7 @@
                 android:layout_alignLeft="@+id/image_view_celebrity"
                 android:layout_alignTop="@+id/image_view_celebrity"
                 android:layout_marginLeft="@dimen/regular_padding"
-                android:layout_marginTop="@dimen/extra_large_padding"/>
+                android:layout_marginTop="@dimen/regular_padding"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
                 android:layout_alignRight="@+id/image_view_celebrity"
                 android:layout_alignTop="@+id/image_view_celebrity"
                 android:layout_marginRight="@dimen/regular_padding"
-                android:layout_marginTop="@dimen/extra_large_padding"/>
+                android:layout_marginTop="@dimen/regular_padding"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
                 android:layout_alignRight="@+id/image_view_celebrity"
                 android:layout_above="@+id/layout_celebrity_detail"
                 android:layout_marginRight="@dimen/regular_padding"
-                android:layout_marginBottom="@dimen/large_padding"/>
+                android:layout_marginBottom="@dimen/regular_padding"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
                 android:src="@drawable/like"
                 android:layout_above="@+id/layout_celebrity_detail"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="@dimen/large_padding"/>
+                android:layout_marginBottom="@dimen/regular_padding"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,7 +64,7 @@
                 android:layout_alignLeft="@+id/image_view_celebrity"
                 android:layout_above="@+id/layout_celebrity_detail"
                 android:layout_marginLeft="@dimen/regular_padding"
-                android:layout_marginBottom="@dimen/large_padding"/>
+                android:layout_marginBottom="@dimen/regular_padding"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"

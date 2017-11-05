@@ -20,7 +20,9 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="@dimen/regular_padding"
+        android:paddingBottom="@dimen/regular_padding">
 
         <com.an.customfontview.CustomTextView
             android:id="@+id/customTextView2"
