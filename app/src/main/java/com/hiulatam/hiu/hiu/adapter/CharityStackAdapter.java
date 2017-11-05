@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 
 import com.an.customfontview.CustomTextView;
 import com.hiulatam.hiu.hiu.R;
 import com.hiulatam.hiu.hiu.modal.CelebrityItemModal;
-import com.huxq17.swipecardsview.BaseCardAdapter;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by:  Shiny Solutions
@@ -25,9 +26,7 @@ public class CharityStackAdapter extends ArrayAdapter<CelebrityItemModal> {
 
     private static final String TAG = "CharityStackAdapter - ";
 
-    private Context context;
-
-    private ArrayList<CelebrityItemModal> celebrityItemModalArrayList;
+    int[] colorcodes = new int[]{R.color.card_view_one, R.color.card_view_two, R.color.card_view_three, R.color.card_view_four};
 
     public CharityStackAdapter(Context context, ArrayList<CelebrityItemModal> celebrityItemModalArrayList) {
         super(context, 0, celebrityItemModalArrayList);
@@ -41,8 +40,11 @@ public class CharityStackAdapter extends ArrayAdapter<CelebrityItemModal> {
         }
 
         CustomTextView customTextViewCharityName = (CustomTextView) view.findViewById(R.id.customTextViewCharityName);
+        ImageView imageViewCharity = (ImageView) view.findViewById(R.id.imageViewCharity);
 
         customTextViewCharityName.setText(String.valueOf(celebrityItemModal.getName()));
+
+        imageViewCharity.setImageResource(colorcodes[i]);
 
         return view;
     }

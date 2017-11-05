@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#940aa3</color>
     <color name="colorAccent">#000000</color>
     <color name="white">#FFFFFF</color>
+
+    <color name="card_view_one">#f2f2f2</color>
+    <color name="card_view_two">#e6e6e6</color>
+    <color name="card_view_three">#d9d9d9</color>
+    <color name="card_view_four">#cccccc</color>
 </resources>

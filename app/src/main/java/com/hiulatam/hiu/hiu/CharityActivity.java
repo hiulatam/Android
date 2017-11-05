@@ -137,6 +137,20 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setPercentage("7.5");
         celebrityItemModalList.add(celebrityItemModal);
 
+        celebrityItemModal = new CelebrityItemModal();
+        celebrityItemModal.setImage("scarlett_johansson");
+        celebrityItemModal.setName("Scarlett Johansson");
+        celebrityItemModal.setArticle("Actriz");
+        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModalList.add(celebrityItemModal);
+
+        celebrityItemModal = new CelebrityItemModal();
+        celebrityItemModal.setImage("scarlett_johansson");
+        celebrityItemModal.setName("Scarlett Johansson");
+        celebrityItemModal.setArticle("Actriz");
+        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModalList.add(celebrityItemModal);
+
 
         return celebrityItemModalList;
     }
