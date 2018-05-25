@@ -12,12 +12,14 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Space;
 
 import com.an.customfontview.CustomTextView;
 import com.hiulatam.hiu.hiu.common.Config;
+import com.hiulatam.hiu.hiu.fragments.PaymentConfirmationDialogFragment;
 import com.hiulatam.hiu.hiu.modal.CelebrityItemModal;
 
 /**
@@ -35,6 +37,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
     CustomTextView textViewCelebrityName, textViewCelebrityArticle, textViewCelebrityPercentage;
     SearchView searchViewCelebrity;
     EditText editTextCardNumber;
+    Button buttonDone;
 
     private CelebrityItemModal celebrityItemModal;
 
@@ -68,6 +71,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
         searchViewCelebrity = (SearchView) findViewById(R.id.search_view_celebrity);
 
         editTextCardNumber = (EditText) findViewById(R.id.editTextCardNumber);
+
+        buttonDone = (Button) findViewById(R.id.buttonDone);
 
     }
 
@@ -111,6 +116,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
         searchViewCelebrity.setOnCloseListener(onCloseListener);
         editTextCardNumber.addTextChangedListener(textWatcher);
         editTextCardNumber.setOnKeyListener(onKeyListener);
+        buttonDone.setOnClickListener(onClickListener);
     }
 
     /**
@@ -124,6 +130,10 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
                 case R.id.search_view_celebrity:
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                    break;
+                case R.id.buttonDone:
+                    PaymentConfirmationDialogFragment paymentConfirmationDialogFragment = new PaymentConfirmationDialogFragment();
+                    paymentConfirmationDialogFragment.show(getSupportFragmentManager(), "PaymentConfirmation");
                     break;
             }
         }

@@ -16,6 +16,7 @@ public class CelebrityItemModal implements Parcelable {
     private String name;
     private String article;
     private String percentage;
+    private String favorite;
 
     public CelebrityItemModal() {
     }
@@ -25,6 +26,7 @@ public class CelebrityItemModal implements Parcelable {
         name = in.readString();
         article = in.readString();
         percentage = in.readString();
+        favorite = in.readString();
     }
 
     public static final Creator<CelebrityItemModal> CREATOR = new Creator<CelebrityItemModal>() {
@@ -71,6 +73,14 @@ public class CelebrityItemModal implements Parcelable {
         this.percentage = percentage;
     }
 
+    public String getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(String favorite) {
+        this.favorite = favorite;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -82,5 +92,6 @@ public class CelebrityItemModal implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(article);
         parcel.writeString(percentage);
+        parcel.writeString(favorite);
     }
 }

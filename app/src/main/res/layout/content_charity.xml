@@ -29,21 +29,14 @@
 
 
 
-    <com.yuyakaido.android.cardstackview.CardStackView
+    <link.fls.swipestack.SwipeStack
         android:id="@+id/cardStackViewChairty"
         android:layout_width="0dp"
         android:layout_height="@dimen/charity_content_square_two"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayoutDesired"
-        app:stackFrom="top"
-        app:visibleCount="4"
-        app:elevationEnabled="true"
-        app:translationDiff="16"
-        app:scaleDiff="0.1"
-        app:swipeEnabled="true"
-        app:swipeDirection="vertical"
-        app:swipeThreshold="0.75"
+        app:stack_rotation="0"
 
         android:layout_marginLeft="@dimen/regular_padding"
         android:layout_marginRight="@dimen/regular_padding"/>

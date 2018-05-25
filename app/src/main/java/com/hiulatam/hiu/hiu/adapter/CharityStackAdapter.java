@@ -48,4 +48,8 @@ public class CharityStackAdapter extends ArrayAdapter<CelebrityItemModal> {
 
         return view;
     }
+
+    public void notifyDataSetChanged(){
+        super.notifyDataSetChanged();
+    }
 }
