@@ -11,16 +11,20 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.hiulatam.hiu.hiu.adapter.CharityStackAdapter;
 import com.hiulatam.hiu.hiu.common.Config;
 import com.hiulatam.hiu.hiu.modal.CelebrityItemModal;
 import com.yuyakaido.android.cardstackview.CardStackView;
+import com.yuyakaido.android.cardstackview.SwipeDirection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import link.fls.swipestack.SwipeStack;
 
 /**
  * Created by:  Shiny Solutions
@@ -33,15 +37,19 @@ public class CharityActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     ImageButton imageButtonNavigationView;
+    ImageView imageViewAddCharities;
     Toolbar toolbar;
     SearchView searchViewCelebrity;
     LinearLayout linearLayoutTitle;
     Button buttonNext;
-    CardStackView cardStackViewCharity;
+    SwipeStack cardStackViewCharity;
 
     private CelebrityItemModal celebrityItemModal;
 
     private CharityStackAdapter charityStackAdapter;
+
+
+    private int numberOfCardSwiped = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -62,6 +70,8 @@ public class CharityActivity extends AppCompatActivity {
 
         imageButtonNavigationView = (ImageButton) findViewById(R.id.image_button_navigation_view);
 
+        imageViewAddCharities = (ImageView) findViewById(R.id.imageViewAddCharities);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         searchViewCelebrity = (SearchView) findViewById(R.id.search_view_celebrity);
@@ -70,7 +80,7 @@ public class CharityActivity extends AppCompatActivity {
 
         buttonNext = (Button) findViewById(R.id.buttonNext);
 
-        cardStackViewCharity = (CardStackView) findViewById(R.id.cardStackViewChairty);
+        cardStackViewCharity = (SwipeStack) findViewById(R.id.cardStackViewChairty);
     }
 
     /**
@@ -80,6 +90,7 @@ public class CharityActivity extends AppCompatActivity {
     private void init(){
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null){
@@ -118,6 +129,28 @@ public class CharityActivity extends AppCompatActivity {
             charityStackAdapter = new CharityStackAdapter(this, setCelebrityItemModalList());
         }
         cardStackViewCharity.setAdapter(charityStackAdapter);
+        cardStackViewCharity.setListener(new SwipeStack.SwipeStackListener() {
+            @Override
+            public void onViewSwipedToLeft(int position) {
+                if (charityStackAdapter.getItem(position).getFavorite().equalsIgnoreCase("Yes"))
+                    imageViewAddCharities.setImageResource(R.drawable.ic_favorites);
+                else
+                    imageViewAddCharities.setImageResource(R.drawable.icon_star);
+            }
+
+            @Override
+            public void onViewSwipedToRight(int position) {
+                if (charityStackAdapter.getItem(position).getFavorite().equalsIgnoreCase("Yes"))
+                    imageViewAddCharities.setImageResource(R.drawable.ic_favorites);
+                else
+                    imageViewAddCharities.setImageResource(R.drawable.icon_star);
+            }
+
+            @Override
+            public void onStackEmpty() {
+                cardStackViewCharity.resetStack();
+            }
+        });
     }
 
     private ArrayList<CelebrityItemModal> setCelebrityItemModalList(){
@@ -128,6 +161,7 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setName("Andres Cepeda");
         celebrityItemModal.setArticle("Musico");
         celebrityItemModal.setPercentage("6.2");
+        celebrityItemModal.setFavorite("Yes");
         celebrityItemModalList.add(celebrityItemModal);
 
         celebrityItemModal = new CelebrityItemModal();
@@ -135,6 +169,7 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setName("Scarlett Johansson");
         celebrityItemModal.setArticle("Actriz");
         celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setFavorite("No");
         celebrityItemModalList.add(celebrityItemModal);
 
         celebrityItemModal = new CelebrityItemModal();
@@ -142,6 +177,7 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setName("Scarlett Johansson");
         celebrityItemModal.setArticle("Actriz");
         celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setFavorite("Yes");
         celebrityItemModalList.add(celebrityItemModal);
 
         celebrityItemModal = new CelebrityItemModal();
@@ -149,6 +185,7 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setName("Scarlett Johansson");
         celebrityItemModal.setArticle("Actriz");
         celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setFavorite("No");
         celebrityItemModalList.add(celebrityItemModal);
 
 

@@ -1,5 +1,6 @@
 package com.hiulatam.hiu.hiu.adapter;
 
+import android.animation.ObjectAnimator;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -7,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.an.customfontview.CustomTextView;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.hiulatam.hiu.hiu.R;
 import com.hiulatam.hiu.hiu.common.Config;
 import com.hiulatam.hiu.hiu.interfaces.ClickListener;
@@ -87,6 +90,9 @@ public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         celebrityItemViewHolder.textViewCelebrityArticle.setText(String.valueOf(celebrityItemModal.getArticle()));
         celebrityItemViewHolder.textViewCelebrityPercentage.setText(String.valueOf(celebrityItemModal.getPercentage()));
 
+        celebrityItemViewHolder.progressBar.setProgress(Integer.parseInt(celebrityItemModal.getPercentage()));
+
+
     }
 
     /**
@@ -114,6 +120,7 @@ public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         public ImageView imageViewCelebrity;
         public CardView cardViewCelebrityItem;
         public CustomTextView textViewCelebrityName, textViewCelebrityArticle, textViewCelebrityPercentage;
+        public DonutProgress progressBar;
 
         /**
          * Created by: Shiny Solutions
@@ -130,6 +137,7 @@ public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.View
             textViewCelebrityName = (CustomTextView) v.findViewById(R.id.text_view_celebrity_name);
             textViewCelebrityArticle = (CustomTextView) v.findViewById(R.id.text_view_celebrity_article);
             textViewCelebrityPercentage = (CustomTextView) v.findViewById(R.id.text_view_celebrity_percentage);
+            progressBar = (DonutProgress) v.findViewById(R.id.celebrity_rating);
 
             imageViewCelebrity.setOnClickListener(this);
 
