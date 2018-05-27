@@ -144,14 +144,14 @@ public class CelebrityFragment extends Fragment {
         celebrityItemModal.setImage("andres_cepeda");
         celebrityItemModal.setName("Andres Cepeda");
         celebrityItemModal.setArticle("Musico");
-        celebrityItemModal.setPercentage("60");
+        celebrityItemModal.setPercentage(60);
         celebrityItemModalList.add(celebrityItemModal);
 
         celebrityItemModal = new CelebrityItemModal();
         celebrityItemModal.setImage("scarlett_johansson");
         celebrityItemModal.setName("Scarlett Johansson");
         celebrityItemModal.setArticle("Actriz");
-        celebrityItemModal.setPercentage("70");
+        celebrityItemModal.setPercentage(70);
         celebrityItemModalList.add(celebrityItemModal);
 
 

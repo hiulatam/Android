@@ -15,7 +15,7 @@ public class CelebrityItemModal implements Parcelable {
     private String image;
     private String name;
     private String article;
-    private String percentage;
+    private int percentage;
     private String favorite;
 
     public CelebrityItemModal() {
@@ -25,7 +25,7 @@ public class CelebrityItemModal implements Parcelable {
         image = in.readString();
         name = in.readString();
         article = in.readString();
-        percentage = in.readString();
+        percentage = in.readInt();
         favorite = in.readString();
     }
 
@@ -65,11 +65,11 @@ public class CelebrityItemModal implements Parcelable {
         this.article = article;
     }
 
-    public String getPercentage() {
+    public int getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(String percentage) {
+    public void setPercentage(int percentage) {
         this.percentage = percentage;
     }
 
@@ -91,7 +91,7 @@ public class CelebrityItemModal implements Parcelable {
         parcel.writeString(image);
         parcel.writeString(name);
         parcel.writeString(article);
-        parcel.writeString(percentage);
+        parcel.writeInt(percentage);
         parcel.writeString(favorite);
     }
 }

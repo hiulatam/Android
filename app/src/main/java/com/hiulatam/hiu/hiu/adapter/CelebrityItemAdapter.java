@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.an.customfontview.CustomTextView;
+import com.github.lzyzsd.circleprogress.CircleProgress;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.hiulatam.hiu.hiu.R;
 import com.hiulatam.hiu.hiu.common.Config;
@@ -90,7 +91,9 @@ public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         celebrityItemViewHolder.textViewCelebrityArticle.setText(String.valueOf(celebrityItemModal.getArticle()));
         celebrityItemViewHolder.textViewCelebrityPercentage.setText(String.valueOf(celebrityItemModal.getPercentage()));
 
-        celebrityItemViewHolder.progressBar.setProgress(Integer.parseInt(celebrityItemModal.getPercentage()));
+        celebrityItemViewHolder.progressBar.setDonut_progress(String.valueOf(celebrityItemModal.getPercentage()));
+        celebrityItemViewHolder.progressBar.setText(String.valueOf(celebrityItemModal.getPercentage()));
+
 
 
     }

@@ -160,7 +160,7 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setImage("andres_cepeda");
         celebrityItemModal.setName("Andres Cepeda");
         celebrityItemModal.setArticle("Musico");
-        celebrityItemModal.setPercentage("6.2");
+        celebrityItemModal.setPercentage(6);
         celebrityItemModal.setFavorite("Yes");
         celebrityItemModalList.add(celebrityItemModal);
 
@@ -168,7 +168,7 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setImage("scarlett_johansson");
         celebrityItemModal.setName("Scarlett Johansson");
         celebrityItemModal.setArticle("Actriz");
-        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setPercentage(7);
         celebrityItemModal.setFavorite("No");
         celebrityItemModalList.add(celebrityItemModal);
 
@@ -176,7 +176,7 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setImage("scarlett_johansson");
         celebrityItemModal.setName("Scarlett Johansson");
         celebrityItemModal.setArticle("Actriz");
-        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setPercentage(7);
         celebrityItemModal.setFavorite("Yes");
         celebrityItemModalList.add(celebrityItemModal);
 
@@ -184,7 +184,7 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setImage("scarlett_johansson");
         celebrityItemModal.setName("Scarlett Johansson");
         celebrityItemModal.setArticle("Actriz");
-        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setPercentage(7);
         celebrityItemModal.setFavorite("No");
         celebrityItemModalList.add(celebrityItemModal);
 
