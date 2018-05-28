@@ -14,6 +14,11 @@ public class Config {
 
     public static final String EXTRA_MESSAGE = "EXTRA_MESSAGE";
     public static final String EXTRA_CELEBRITY_ITEM = "EXTRA_CELEBRITY_ITEM";
+    public static final String EXTRA_SEARCH_QUERY = "EXTRA_SEARCH_QUERY";
+
+    public static final String ACTION_SEARCH_QUERY = "ACTION_SEARCH_QUERY";
+
+    public static final String kAll = "All";
 
     public static final void logInfo(String message){
         Log.i(TAG, message);

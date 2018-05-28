@@ -1,6 +1,9 @@
 package com.hiulatam.hiu.hiu.fragments;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,12 +13,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.hiulatam.hiu.hiu.DetailActivity;
 import com.hiulatam.hiu.hiu.R;
 import com.hiulatam.hiu.hiu.adapter.CelebrityItemAdapter;
 import com.hiulatam.hiu.hiu.common.Config;
 import com.hiulatam.hiu.hiu.interfaces.ClickListener;
+import com.hiulatam.hiu.hiu.interfaces.FilterResultsCallback;
 import com.hiulatam.hiu.hiu.modal.CelebrityItemModal;
 
 import java.util.ArrayList;
@@ -32,6 +37,7 @@ public class CelebrityFragment extends Fragment {
 
     //UI Components
     private RecyclerView recyclerViewCelebirty;
+    private TextView textViewEmptyResult;
 
     //API
     private RecyclerView.LayoutManager reccyclerViewLayoutManager;
@@ -85,12 +91,31 @@ public class CelebrityFragment extends Fragment {
         addListeners();
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        Config.logInfo(TAG + "onResume");
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Config.ACTION_SEARCH_QUERY);
+        getActivity().registerReceiver(searchBroadcastReceiver, intentFilter);
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Config.logInfo(TAG + "onPause");
+        getActivity().unregisterReceiver(searchBroadcastReceiver);
+    }
+
     /**
      * Created by:  Shiny Solutions
      * Created on:  10/7/2017
      */
     private void bindComponents(){
         recyclerViewCelebirty = getView().findViewById(R.id.recycler_view_celebrity);
+
+        textViewEmptyResult = getView().findViewById(R.id.textViewEmptyResult);
     }
 
     /**
@@ -129,6 +154,7 @@ public class CelebrityFragment extends Fragment {
         if (celebrityItemAdapter == null)
             celebrityItemAdapter = new CelebrityItemAdapter(setCelebrityItemModalList());
         celebrityItemAdapter.setOnClickListener(clickListener);
+        celebrityItemAdapter.setFilterResultsCallback(filterResultsCallback);
         recyclerViewCelebirty.setAdapter(celebrityItemAdapter);
     }
 
@@ -145,6 +171,7 @@ public class CelebrityFragment extends Fragment {
         celebrityItemModal.setName("Andres Cepeda");
         celebrityItemModal.setArticle("Musico");
         celebrityItemModal.setPercentage(60);
+        celebrityItemModal.setEmptyResult("No");
         celebrityItemModalList.add(celebrityItemModal);
 
         celebrityItemModal = new CelebrityItemModal();
@@ -152,6 +179,7 @@ public class CelebrityFragment extends Fragment {
         celebrityItemModal.setName("Scarlett Johansson");
         celebrityItemModal.setArticle("Actriz");
         celebrityItemModal.setPercentage(70);
+        celebrityItemModal.setEmptyResult("No");
         celebrityItemModalList.add(celebrityItemModal);
 
 
@@ -178,7 +206,41 @@ public class CelebrityFragment extends Fragment {
         }
     };
 
+    BroadcastReceiver searchBroadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Config.logInfo(TAG + "onReceive");
+            if (intent.getAction().equalsIgnoreCase(Config.ACTION_SEARCH_QUERY)){
+                String query = null;
+                Bundle bundle = intent.getExtras();
+                if (bundle != null){
+                    if (bundle.containsKey(Config.EXTRA_SEARCH_QUERY)){
+                        query = bundle.getString(Config.EXTRA_SEARCH_QUERY);
+                    }
+                }
 
+                celebrityItemAdapter.getFilter().filter(query);
+
+
+
+            }
+        }
+    };
+
+
+    FilterResultsCallback filterResultsCallback = new FilterResultsCallback() {
+        @Override
+        public void getFilterResultCount(int filterResultCount) {
+            if (filterResultCount > 0){
+                textViewEmptyResult.setVisibility(View.GONE);
+                recyclerViewCelebirty.setVisibility(View.VISIBLE);
+            }else{
+                textViewEmptyResult.setText(getString(R.string.empty_result));
+                textViewEmptyResult.setVisibility(View.VISIBLE);
+                recyclerViewCelebirty.setVisibility(View.GONE);
+            }
+        }
+    };
 
 
 }

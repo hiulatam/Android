@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -16,8 +18,10 @@ import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.hiulatam.hiu.hiu.R;
 import com.hiulatam.hiu.hiu.common.Config;
 import com.hiulatam.hiu.hiu.interfaces.ClickListener;
+import com.hiulatam.hiu.hiu.interfaces.FilterResultsCallback;
 import com.hiulatam.hiu.hiu.modal.CelebrityItemModal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,13 +29,15 @@ import java.util.List;
  * Created on:  10/8/17
  */
 
-public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable{
 
     private static final String TAG = "CelebrityItemAdapter - ";
 
     private List<CelebrityItemModal> celebrityItemModalList;
+    private List<CelebrityItemModal> celebrityItemModalListBackup;
 
     private ClickListener clickListener;
+    private FilterResultsCallback filterResultsCallback;
 
     /**
      * Created by:  Shiny Solutions
@@ -39,6 +45,7 @@ public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.View
      * @param celebrityItemModalList
      */
     public CelebrityItemAdapter(List<CelebrityItemModal> celebrityItemModalList){
+        this.celebrityItemModalListBackup = celebrityItemModalList;
         this.celebrityItemModalList = celebrityItemModalList;
     }
 
@@ -50,6 +57,10 @@ public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void setOnClickListener(ClickListener clickListener){
         Log.i(Config.TAG, TAG + "setOnClickListener");
         this.clickListener = clickListener;
+    }
+
+    public void setFilterResultsCallback(FilterResultsCallback filterResultsCallback){
+        this.filterResultsCallback = filterResultsCallback;
     }
 
     /**
@@ -118,6 +129,12 @@ public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         return celebrityItemModalList.get(position);
     }
 
+    @Override
+    public Filter getFilter() {
+        Config.logInfo(TAG + "getFilter");
+        return new SearchFilter();
+    }
+
     public class CelebrityItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public ImageView imageViewCelebrity;
@@ -155,6 +172,56 @@ public class CelebrityItemAdapter extends RecyclerView.Adapter<RecyclerView.View
         public void onClick(View view) {
             Log.i(Config.TAG, TAG + "onClick");
             clickListener.onClick(view, getAdapterPosition());
+        }
+    }
+
+    private class SearchFilter extends Filter{
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            Config.logInfo(TAG + "performFiltering");
+            String filterString = charSequence.toString().toLowerCase();
+
+            FilterResults filterResults = new FilterResults();
+
+            if (filterString.trim().equalsIgnoreCase(Config.kAll)){
+                filterResults.values = celebrityItemModalListBackup;
+                filterResults.count = celebrityItemModalListBackup.size();
+            }else{
+                if (filterString.trim().length() > 0){
+                    List<CelebrityItemModal> listCelebrityItemModal = celebrityItemModalListBackup;
+                    List<CelebrityItemModal> filteredlistCelebrityItemModal = new ArrayList<CelebrityItemModal>();
+
+                    String filterableString;
+                    CelebrityItemModal filteredCelebrityItemModal;
+
+                    for (int i = 0; i < listCelebrityItemModal.size(); i++){
+                        filterableString = listCelebrityItemModal.get(i).getName();
+                        filteredCelebrityItemModal = listCelebrityItemModal.get(i);
+                        if (filterableString.toLowerCase().contains(filterString)){
+                            filteredlistCelebrityItemModal.add(filteredCelebrityItemModal);
+                        }
+                    }
+                    filterResults.values = filteredlistCelebrityItemModal;
+                    filterResults.count = filteredlistCelebrityItemModal.size();
+                }else{
+                    filterResults.values = celebrityItemModalListBackup;
+                    filterResults.count = celebrityItemModalListBackup.size();
+                }
+            }
+
+
+
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            Config.logInfo(TAG + "publishResults");
+            celebrityItemModalList = (List<CelebrityItemModal>) filterResults.values;
+            filterResultsCallback.getFilterResultCount(celebrityItemModalList.size());
+            notifyDataSetChanged();
         }
     }
 }
