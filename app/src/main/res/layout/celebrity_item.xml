@@ -99,7 +99,9 @@
                     android:layout_height="75dp"
                     android:layout_alignParentRight="true"
                     android:id="@+id/celebrity_rating"
-                    custom:donut_progress="10"/>
+                    custom:donut_progress="10"
+                    custom:donut_unfinished_color="@android:color/darker_gray"
+                    custom:donut_finished_color="@color/colorPrimary"/>
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

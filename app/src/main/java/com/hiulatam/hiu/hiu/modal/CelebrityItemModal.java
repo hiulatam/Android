@@ -15,8 +15,9 @@ public class CelebrityItemModal implements Parcelable {
     private String image;
     private String name;
     private String article;
-    private String percentage;
+    private int percentage;
     private String favorite;
+    private String emptyResult;
 
     public CelebrityItemModal() {
     }
@@ -25,8 +26,9 @@ public class CelebrityItemModal implements Parcelable {
         image = in.readString();
         name = in.readString();
         article = in.readString();
-        percentage = in.readString();
+        percentage = in.readInt();
         favorite = in.readString();
+        emptyResult = in.readString();
     }
 
     public static final Creator<CelebrityItemModal> CREATOR = new Creator<CelebrityItemModal>() {
@@ -65,11 +67,11 @@ public class CelebrityItemModal implements Parcelable {
         this.article = article;
     }
 
-    public String getPercentage() {
+    public int getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(String percentage) {
+    public void setPercentage(int percentage) {
         this.percentage = percentage;
     }
 
@@ -79,6 +81,14 @@ public class CelebrityItemModal implements Parcelable {
 
     public void setFavorite(String favorite) {
         this.favorite = favorite;
+    }
+
+    public String getEmptyResult() {
+        return emptyResult;
+    }
+
+    public void setEmptyResult(String emptyResult) {
+        this.emptyResult = emptyResult;
     }
 
     @Override
@@ -91,7 +101,8 @@ public class CelebrityItemModal implements Parcelable {
         parcel.writeString(image);
         parcel.writeString(name);
         parcel.writeString(article);
-        parcel.writeString(percentage);
+        parcel.writeInt(percentage);
         parcel.writeString(favorite);
+        parcel.writeString(emptyResult);
     }
 }

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Space;
 
 import com.an.customfontview.CustomTextView;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.hiulatam.hiu.hiu.common.Config;
 import com.hiulatam.hiu.hiu.fragments.PaymentConfirmationDialogFragment;
 import com.hiulatam.hiu.hiu.modal.CelebrityItemModal;
@@ -38,6 +39,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
     SearchView searchViewCelebrity;
     EditText editTextCardNumber;
     Button buttonDone;
+    DonutProgress celebrity_rating;
 
     private CelebrityItemModal celebrityItemModal;
 
@@ -74,6 +76,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
         buttonDone = (Button) findViewById(R.id.buttonDone);
 
+        celebrity_rating = (DonutProgress) findViewById(R.id.celebrity_rating);
+
     }
 
     /**
@@ -93,6 +97,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
             textViewCelebrityName.setText(String.valueOf(celebrityItemModal.getName()));
             textViewCelebrityArticle.setText(String.valueOf(celebrityItemModal.getArticle()));
             textViewCelebrityPercentage.setText(String.valueOf(celebrityItemModal.getPercentage()));
+            celebrity_rating.setDonut_progress(String.valueOf(celebrityItemModal.getPercentage()));
+            celebrity_rating.setText(String.valueOf(celebrityItemModal.getPercentage()));
 
 
 

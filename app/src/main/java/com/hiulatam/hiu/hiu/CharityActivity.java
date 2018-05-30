@@ -157,34 +157,34 @@ public class CharityActivity extends AppCompatActivity {
         ArrayList<CelebrityItemModal> celebrityItemModalList = new ArrayList<CelebrityItemModal>();
 
         CelebrityItemModal celebrityItemModal = new CelebrityItemModal();
-        celebrityItemModal.setImage("andres_cepeda");
-        celebrityItemModal.setName("Andres Cepeda");
+        celebrityItemModal.setImage("bill_melinda_gates_foundation");
+        celebrityItemModal.setName("Bill & Melinda Gates Foundation");
         celebrityItemModal.setArticle("Musico");
-        celebrityItemModal.setPercentage("6.2");
+        celebrityItemModal.setPercentage(6);
         celebrityItemModal.setFavorite("Yes");
         celebrityItemModalList.add(celebrityItemModal);
 
         celebrityItemModal = new CelebrityItemModal();
-        celebrityItemModal.setImage("scarlett_johansson");
-        celebrityItemModal.setName("Scarlett Johansson");
+        celebrityItemModal.setImage("open_society");
+        celebrityItemModal.setName("Open Society Foundations");
         celebrityItemModal.setArticle("Actriz");
-        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setPercentage(7);
         celebrityItemModal.setFavorite("No");
         celebrityItemModalList.add(celebrityItemModal);
 
         celebrityItemModal = new CelebrityItemModal();
-        celebrityItemModal.setImage("scarlett_johansson");
-        celebrityItemModal.setName("Scarlett Johansson");
+        celebrityItemModal.setImage("ford_foundation");
+        celebrityItemModal.setName("Ford Foundation");
         celebrityItemModal.setArticle("Actriz");
-        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setPercentage(7);
         celebrityItemModal.setFavorite("Yes");
         celebrityItemModalList.add(celebrityItemModal);
 
         celebrityItemModal = new CelebrityItemModal();
-        celebrityItemModal.setImage("scarlett_johansson");
-        celebrityItemModal.setName("Scarlett Johansson");
+        celebrityItemModal.setImage("william_and_flora_hewlett_foundation");
+        celebrityItemModal.setName("William and Flora Hewlett Foundation");
         celebrityItemModal.setArticle("Actriz");
-        celebrityItemModal.setPercentage("7.5");
+        celebrityItemModal.setPercentage(7);
         celebrityItemModal.setFavorite("No");
         celebrityItemModalList.add(celebrityItemModal);
 

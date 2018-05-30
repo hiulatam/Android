@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import com.an.customfontview.CustomTextView;
 import com.hiulatam.hiu.hiu.adapter.CelebrityFragmentPagerAdapter;
+import com.hiulatam.hiu.hiu.common.Config;
 import com.hiulatam.hiu.hiu.fragments.CelebrityFragment;
 import com.hiulatam.hiu.hiu.utils.circleTransform;
 import com.hiulatam.hiu.hiu.utils.profileUser;
@@ -128,6 +129,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
         imageButtonNavigationView.setOnClickListener(onClickListener);
         searchViewCelebrity.setOnSearchClickListener(onClickListener);
         searchViewCelebrity.setOnCloseListener(onCloseListener);
+        searchViewCelebrity.setOnQueryTextListener(onQueryTextListener);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -196,6 +198,7 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
                 case R.id.search_view_celebrity:
                     imageButtonNavigationView.setVisibility(View.GONE);
                     linearLayoutTitle.setVisibility(View.GONE);
+
                     break;
             }
         }
@@ -208,8 +211,36 @@ public class DashboardActivity extends AppCompatActivity implements NavigationVi
     SearchView.OnCloseListener onCloseListener = new SearchView.OnCloseListener() {
         @Override
         public boolean onClose() {
+            Config.logInfo(TAG + "onClose");
             imageButtonNavigationView.setVisibility(View.VISIBLE);
             linearLayoutTitle.setVisibility(View.VISIBLE);
+            Intent searchBroadcastIntent = new Intent();
+            searchBroadcastIntent.setAction(Config.ACTION_SEARCH_QUERY);
+            searchBroadcastIntent.putExtra(Config.EXTRA_SEARCH_QUERY, Config.kAll);
+            sendBroadcast(searchBroadcastIntent);
+            return false;
+        }
+    };
+
+
+    SearchView.OnQueryTextListener onQueryTextListener = new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            Config.logInfo(TAG + "onQueryTextSubmit");
+            Intent searchBroadcastIntent = new Intent();
+            searchBroadcastIntent.setAction(Config.ACTION_SEARCH_QUERY);
+            searchBroadcastIntent.putExtra(Config.EXTRA_SEARCH_QUERY, query);
+            sendBroadcast(searchBroadcastIntent);
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            Config.logInfo(TAG + "onQueryTextChange");
+            Intent searchBroadcastIntent = new Intent();
+            searchBroadcastIntent.setAction(Config.ACTION_SEARCH_QUERY);
+            searchBroadcastIntent.putExtra(Config.EXTRA_SEARCH_QUERY, newText);
+            sendBroadcast(searchBroadcastIntent);
             return false;
         }
     };
