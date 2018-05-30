@@ -26,7 +26,7 @@ public class CharityStackAdapter extends ArrayAdapter<CelebrityItemModal> {
 
     private static final String TAG = "CharityStackAdapter - ";
 
-    int[] colorcodes = new int[]{R.color.card_view_one, R.color.card_view_two, R.color.card_view_three, R.color.card_view_four};
+    int[] colorcodes = new int[]{R.drawable.bill_melinda_gates_foundation, R.drawable.open_society, R.drawable.ford_foundation, R.drawable.william_and_flora_hewlett_foundation};
 
     public CharityStackAdapter(Context context, ArrayList<CelebrityItemModal> celebrityItemModalArrayList) {
         super(context, 0, celebrityItemModalArrayList);

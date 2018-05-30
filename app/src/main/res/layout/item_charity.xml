@@ -13,7 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/customTextViewCharityName"
+        app:layout_constraintBottom_toTopOf="@+id/customTextViewLearnMore"/>
 
     <com.an.customfontview.CustomTextView
         android:id="@+id/customTextViewCharityName"
@@ -37,6 +39,7 @@
         android:layout_marginRight="@dimen/charity_content_square_difference_one"
         android:layout_marginEnd="@dimen/charity_content_square_difference_one" />
     <com.an.customfontview.CustomTextView
+        android:id="@+id/customTextViewLearnMore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/learn_more"
