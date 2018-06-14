@@ -12,5 +12,8 @@
 
     <string-array name="messageValues">
         <item>@string/value1</item>
+        <item>@string/value2</item>
+        <item>@string/value3</item>
+        <item>@string/value4</item>
     </string-array>
 </resources>
