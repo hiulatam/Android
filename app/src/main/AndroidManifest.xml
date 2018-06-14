@@ -72,7 +72,11 @@
         </activity>
         <activity
             android:name=".CharityActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:parentActivityName=".DetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetailActivity"/>
+        </activity>
         <activity android:name=".PaymentDetailActivity"
             android:parentActivityName=".CharityActivity"
             android:theme="@style/AppTheme.NoActionBar">

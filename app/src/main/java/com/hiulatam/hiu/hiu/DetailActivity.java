@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -131,7 +132,6 @@ public class DetailActivity extends AppCompatActivity {
         intent.setClass(this, CharityActivity.class);
         intent.putExtra(Config.EXTRA_CELEBRITY_ITEM, celebrityItemModal);
         startActivity(intent);
-        finish();
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
