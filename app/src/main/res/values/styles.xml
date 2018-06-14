@@ -112,5 +112,21 @@
         <item name="android:paddingBottom">@dimen/regular_padding</item>
     </style>
 
+    <!--Alert Dialog-->
+    <style name="todoDialogLight" parent="Theme.AppCompat.Light.Dialog">
+
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/colorPrimaryDark</item>
+        <item name="android:textStyle">bold</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <!-- Used for the background -->
+        <!-- <item name="android:background">#4CAF50</item>-->
+        <item name="android:fontFamily">sans-serif</item>
+        <!--<item      name="android:windowAnimationStyle">@style/RemindDialogAnimation</item>-->
+        <item name="android:layout_width">@dimen/extra_large_padding</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 
 </resources>
