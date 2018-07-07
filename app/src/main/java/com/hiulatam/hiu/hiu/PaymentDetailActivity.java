@@ -35,7 +35,7 @@ public class PaymentDetailActivity extends AppCompatActivity {
     CollapsingToolbarLayout collapsingToolbarLayout;
     Toolbar toolbar;
     ImageView imageViewCelebrity;
-    CustomTextView textViewCelebrityName, textViewCelebrityArticle, textViewCelebrityPercentage;
+    CustomTextView textViewCelebrityName, textViewCelebrityArticle, textViewCelebrityPercentage, textViewMessageValue, textViewCharityValue, textViewTotalValue;
     SearchView searchViewCelebrity;
     EditText editTextCardNumber;
     Button buttonDone;
@@ -44,6 +44,9 @@ public class PaymentDetailActivity extends AppCompatActivity {
     private CelebrityItemModal celebrityItemModal;
 
     private boolean deletePressed;
+    private int messageValue;
+    private int charityValue;
+    private int totalValue;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -78,6 +81,12 @@ public class PaymentDetailActivity extends AppCompatActivity {
 
         celebrity_rating = (DonutProgress) findViewById(R.id.celebrity_rating);
 
+        textViewMessageValue = (CustomTextView) findViewById(R.id.textViewMessageValue);
+
+        textViewCharityValue = (CustomTextView) findViewById(R.id.textViewCharityValue);
+
+        textViewTotalValue = (CustomTextView) findViewById(R.id.textViewTotalValue);
+
     }
 
     /**
@@ -85,6 +94,8 @@ public class PaymentDetailActivity extends AppCompatActivity {
      * Created on:  10/23/17.
      */
     private void init(){
+        charityValue = 5;
+        textViewCharityValue.setText(String.format("$%d", charityValue));
         Bundle extras = getIntent().getExtras();
         if (extras != null){
             if (extras.containsKey(Config.EXTRA_CELEBRITY_ITEM)){
@@ -108,9 +119,17 @@ public class PaymentDetailActivity extends AppCompatActivity {
             if (celebrityItemModal.getImage().equalsIgnoreCase("scarlett_johansson")) {
                 imageViewCelebrity.setBackgroundResource(R.drawable.scarlett_johansson);
             }
+
+            if (celebrityItemModal.getValue() != null && celebrityItemModal.getValue().length() > 0){
+                messageValue = Integer.valueOf(celebrityItemModal.getValue());
+                textViewMessageValue.setText(String.format("$%d", messageValue));
+            }
         }
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        totalValue = messageValue + charityValue;
+        textViewTotalValue.setText(String.format("$%d", totalValue));
     }
 
     /**
@@ -138,7 +157,10 @@ public class PaymentDetailActivity extends AppCompatActivity {
                     getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                     break;
                 case R.id.buttonDone:
+                    Bundle arguments = new Bundle();
+                    arguments.putString(PaymentConfirmationDialogFragment.EXTRAS_PAYMENT_VALUE, textViewTotalValue.getText().toString());
                     PaymentConfirmationDialogFragment paymentConfirmationDialogFragment = new PaymentConfirmationDialogFragment();
+                    paymentConfirmationDialogFragment.setArguments(arguments);
                     paymentConfirmationDialogFragment.show(getSupportFragmentManager(), "PaymentConfirmation");
                     break;
             }

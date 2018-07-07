@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -115,6 +116,7 @@ public class DetailActivity extends AppCompatActivity {
      */
     public void addListeners(){
         buttonNext.setOnClickListener(onClickListener);
+        spinnerValues.setOnItemSelectedListener(onItemSelectedListener);
     }
 
     /**
@@ -138,6 +140,22 @@ public class DetailActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             openCharitySelection();
+        }
+    };
+
+    AdapterView.OnItemSelectedListener onItemSelectedListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            Config.logInfo(TAG + "onItemSelected");
+            String value = parent.getItemAtPosition(position).toString();
+            value = value.substring(0, value.length()-4);
+            Config.logInfo(TAG + "onItemSelected - Selected Item: " + value);
+            celebrityItemModal.setValue(value);
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
         }
     };
 }
