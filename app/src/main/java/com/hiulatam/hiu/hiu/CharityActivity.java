@@ -50,6 +50,7 @@ public class CharityActivity extends AppCompatActivity {
 
 
     private int numberOfCardSwiped = 0;
+    ArrayList<CelebrityItemModal> celebrityItemModalList = new ArrayList<CelebrityItemModal>();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -99,7 +100,15 @@ public class CharityActivity extends AppCompatActivity {
             }
         }
 
+        setCelebrityItemModalList();
+
         setCharityAdapter();
+
+        if (celebrityItemModalList.get(cardStackViewCharity.getCurrentPosition()).getFavorite().equalsIgnoreCase("Yes")) {
+            imageViewAddCharities.setImageResource(R.drawable.ic_favorites);
+        }else {
+            imageViewAddCharities.setImageResource(R.drawable.icon_star);
+        }
     }
 
     /**
@@ -111,6 +120,7 @@ public class CharityActivity extends AppCompatActivity {
         searchViewCelebrity.setOnSearchClickListener(onClickListener);
         searchViewCelebrity.setOnCloseListener(onCloseListener);
         buttonNext.setOnClickListener(onClickListener);
+        imageViewAddCharities.setOnClickListener(onClickListener);
     }
 
     /**
@@ -126,9 +136,10 @@ public class CharityActivity extends AppCompatActivity {
 
     private void setCharityAdapter(){
         if (charityStackAdapter == null){
-            charityStackAdapter = new CharityStackAdapter(this, setCelebrityItemModalList());
+            charityStackAdapter = new CharityStackAdapter(this, celebrityItemModalList);
         }
         cardStackViewCharity.setAdapter(charityStackAdapter);
+        charityStackAdapter.setNotifyOnChange(true);
         cardStackViewCharity.setListener(new SwipeStack.SwipeStackListener() {
             @Override
             public void onViewSwipedToLeft(int position) {
@@ -153,8 +164,8 @@ public class CharityActivity extends AppCompatActivity {
         });
     }
 
-    private ArrayList<CelebrityItemModal> setCelebrityItemModalList(){
-        ArrayList<CelebrityItemModal> celebrityItemModalList = new ArrayList<CelebrityItemModal>();
+    private void setCelebrityItemModalList(){
+        celebrityItemModalList.clear();
 
         CelebrityItemModal celebrityItemModal = new CelebrityItemModal();
         celebrityItemModal.setImage("bill_melinda_gates_foundation");
@@ -187,9 +198,6 @@ public class CharityActivity extends AppCompatActivity {
         celebrityItemModal.setPercentage(7);
         celebrityItemModal.setFavorite("No");
         celebrityItemModalList.add(celebrityItemModal);
-
-
-        return celebrityItemModalList;
     }
 
     /**
@@ -199,6 +207,7 @@ public class CharityActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            Config.logInfo(TAG + "onClick");
             switch (view.getId()){
                 case R.id.image_button_navigation_view:
                     drawerLayout.openDrawer(Gravity.LEFT);
@@ -209,6 +218,18 @@ public class CharityActivity extends AppCompatActivity {
                     break;
                 case R.id.buttonNext:
                     openPaymentDetail();
+                    break;
+                case R.id.imageViewAddCharities:
+                    Config.logInfo(TAG + "onClick - existing: " + celebrityItemModalList.get(cardStackViewCharity.getCurrentPosition()).getFavorite());
+                    if (celebrityItemModalList.get(cardStackViewCharity.getCurrentPosition()).getFavorite().equalsIgnoreCase("Yes")) {
+                        celebrityItemModalList.get(cardStackViewCharity.getCurrentPosition()).setFavorite("No");
+                        imageViewAddCharities.setImageResource(R.drawable.icon_star);
+                        Config.logInfo(TAG + "onClick - set no");
+                    }else {
+                        celebrityItemModalList.get(cardStackViewCharity.getCurrentPosition()).setFavorite("Yes");
+                        imageViewAddCharities.setImageResource(R.drawable.ic_favorites);
+                        Config.logInfo(TAG + "onClick - set yes");
+                    }
                     break;
             }
         }
